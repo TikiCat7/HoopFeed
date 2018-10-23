@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import styled from 'styled-components/macro';
+
+let Button = styled.div`
+  background-color: blue;
+  opacity: 1;
+`;
 class App extends Component {
   render() {
     return (
@@ -11,6 +17,7 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+          <Button>IM A STYLED COMPONENT</Button>
           <a
             className="App-link"
             href="https://reactjs.org"
