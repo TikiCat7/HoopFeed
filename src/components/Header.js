@@ -33,20 +33,18 @@ let BallWrapper = styled.div`
   margin: 10px;
 `;
 
-class Header extends React.Component {
-  render() {
-    return (
-      <HeaderWrapper>
-        <LogoWrapper>
-          <BallWrapper>
-            <Ball />
-          </BallWrapper>
-          <Title>HOOPFEED</Title>
-        </LogoWrapper>
-        <Hamburger />
-      </HeaderWrapper>
-    );
-  }
-}
+const Header = () => {
+  return (
+    <HeaderWrapper>
+      <LogoWrapper>
+        <BallWrapper>
+          <Ball />
+        </BallWrapper>
+        <Title>HOOPFEED</Title>
+      </LogoWrapper>
+      <Hamburger />
+    </HeaderWrapper>
+  );
+};
 
 export default Header;

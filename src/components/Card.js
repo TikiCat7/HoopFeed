@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 const CardWrapper = styled.div`
@@ -93,8 +93,10 @@ const Card = ({
   homeRecord,
   awayRecord
 }) => {
+  let [cardOpen, toggleCardOpen] = useState(false);
+
   return (
-    <CardWrapper>
+    <CardWrapper onClick={() => toggleCardOpen(!cardOpen)}>
       <CardContent>
         <TeamInfo>
           <TeamName>{homeTeam}</TeamName>

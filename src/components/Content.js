@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 
 import Card from './Card';
@@ -9,16 +9,12 @@ const ScrollableArea = styled.div`
   margin-top: 55px;
 `;
 
-class Content extends Component {
-  renderCards() {
-    return this.props.matches.map(match => (
-      <Card key={match.matchId} {...match} />
-    ));
-  }
+const renderCards = matches => {
+  return matches.map(match => <Card key={match.matchId} {...match} />);
+};
 
-  render() {
-    return <ScrollableArea>{this.renderCards()}</ScrollableArea>;
-  }
-}
+const Content = ({ matches }) => {
+  return <ScrollableArea>{renderCards(matches)}</ScrollableArea>;
+};
 
 export default Content;
