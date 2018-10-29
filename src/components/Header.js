@@ -6,6 +6,7 @@ import Hamburger from './Hamburger';
 import { ReactComponent as Ball } from '../images/ball.svg';
 
 let HeaderWrapper = styled.div`
+  user-select: none;
   background-color: black;
   display: flex;
   align-items: center;

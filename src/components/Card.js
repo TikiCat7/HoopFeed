@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import styled from 'styled-components/macro';
+import { useSpring, animated, config } from 'react-spring';
+import styled, { css } from 'styled-components/macro';
 
-const CardWrapper = styled.div`
+const CardWrapper = styled(animated.div)`
+  user-select: none;
+  height: 150px;
   color: white;
   background-color: #1e1e1e;
   border-radius: 10px;
-  margin-left: 37px;
-  margin-right: 37px;
   margin-bottom: 20px;
-
-  &:first-child {
-    margin-top: 20px;
-  }
+  width: 300px;
 `;
 
 const CardContent = styled.div`
@@ -19,9 +17,6 @@ const CardContent = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* border-width: 1px;
-  border-color: salmon;
-  border-style: solid; */
 `;
 
 const TeamInfo = styled.div`
@@ -30,31 +25,25 @@ const TeamInfo = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 20px;
   margin-left: 20px;
   margin-bottom: 20px;
-  /* border-width: 1px;
-  border-color: salmon;
-  border-style: solid; */
-  max-width: 110px;
+  min-width: 110px;
 
   &:last-child {
-    margin-right: 20px;
     margin-left: 0px;
+    margin-right: 20px;
   }
 `;
 
-const TeamName = styled.span`
+const TeamName = styled(animated.div)`
   font-family: 'Fugaz One', cursive;
   font-weight: 800;
-  font-size: 28px;
   color: white;
   text-transform: uppercase;
 `;
 
-const Score = styled.span`
+const Score = styled(animated.span)`
   font-family: 'Fugaz One';
-  font-size: 36px;
   color: white;
 `;
 
@@ -62,11 +51,11 @@ const TeamRecord = styled.span`
   font-family: 'Fugaz One', cursive;
   color: #848181;
   font-size: 10px;
+  margin-top: 5px;
 `;
 
 const HighLights = styled.div`
-  /* position: relative; */
-  /* display: block; */
+  margin-left: -33px;
   border-width: 2px;
   border-style: solid;
   border-color: #7af1ba;
@@ -79,6 +68,55 @@ const HighLights = styled.div`
   color: #7af1ba;
   text-align: center;
   line-height: 1.7;
+  transition: transform 0.4s ease-out;
+  ${props =>
+    props.cardOpen &&
+    css`
+      transform: translateY(16px) translateX(-3px);
+    `};
+`;
+
+const CardHeader = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const CardHeaderArea = styled.div`
+  min-height: 16px;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+
+const LiveIndicator = styled.span`
+  text-transform: uppercase;
+  color: rgb(195, 39, 32);
+  font-size: 12px;
+  font-weight: 800;
+  margin-left: 10px;
+`;
+
+const GameTime = styled.div`
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: white;
+  font-weight: 800;
+  font-style: italic;
+  transition: transform 0.3s ease-in-out;
+  ${props =>
+    props.cardOpen &&
+    css`
+      transform: translateY(-15px);
+    `};
 `;
 
 const Card = ({
@@ -93,21 +131,57 @@ const Card = ({
   homeRecord,
   awayRecord
 }) => {
+  const Finished = status !== '3';
   let [cardOpen, toggleCardOpen] = useState(false);
+  let [cardHeight, setCardHeight] = useState(150);
+  let [teamFontSize, setTeamFontSize] = useState(28);
+  let [scoreFontSize, setScoreFontSize] = useState(36);
 
+  const onCardClick = () => {
+    toggleCardOpen(!cardOpen);
+    setCardHeight(cardOpen ? 150 : 300);
+    setTeamFontSize(cardOpen ? 28 : 15);
+    setScoreFontSize(cardOpen ? 36 : 24);
+  };
+  const [cardHeightStyle] = useSpring({
+    height: cardHeight,
+    from: { height: 150 },
+    config: config.gentle,
+    native: true
+  });
+  const [teamNameStyle] = useSpring({
+    fontSize: teamFontSize,
+    from: { fontSize: teamFontSize },
+    native: true
+  });
+  const [scoreStyle] = useSpring({
+    fontSize: scoreFontSize,
+    from: { fontSize: scoreFontSize },
+    native: true
+  });
   return (
-    <CardWrapper onClick={() => toggleCardOpen(!cardOpen)}>
+    <CardWrapper style={cardHeightStyle} onClick={onCardClick}>
+      <CardHeaderArea>
+        <CardHeader>
+          {!Finished && <LiveIndicator>Live</LiveIndicator>}
+        </CardHeader>
+        <CardHeader>
+          {highlights && (
+            <HighLights cardOpen={cardOpen}>Highlights</HighLights>
+          )}
+        </CardHeader>
+      </CardHeaderArea>
       <CardContent>
         <TeamInfo>
-          <TeamName>{homeTeam}</TeamName>
+          <TeamName style={teamNameStyle}>{homeTeam}</TeamName>
           <TeamRecord>{homeRecord}</TeamRecord>
-          <Score>{homeScore}</Score>
+          <Score style={scoreStyle}>{homeScore}</Score>
         </TeamInfo>
-        <HighLights>Highlights</HighLights>
+        <GameTime cardOpen={cardOpen}>{Finished ? 'FINAL' : time}</GameTime>
         <TeamInfo>
-          <TeamName>{awayTeam}</TeamName>
+          <TeamName style={teamNameStyle}>{awayTeam}</TeamName>
           <TeamRecord>{awayRecord}</TeamRecord>
-          <Score>{awayScore}</Score>
+          <Score style={scoreStyle}>{awayScore}</Score>
         </TeamInfo>
       </CardContent>
     </CardWrapper>
