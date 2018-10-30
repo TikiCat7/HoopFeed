@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { Trail, animated } from 'react-spring';
 
@@ -12,7 +12,16 @@ const ScrollableArea = styled.div`
   flex-direction: column;
 `;
 
+const CardContainer = styled(animated.div)`
+  &:first-child {
+    margin-top: 10px;
+  }
+`;
 const Content = ({ matches }) => {
+  const [selectedIndex, setIndex] = useState(null);
+  const onSelect = index => {
+    setIndex(index);
+  };
   return (
     <ScrollableArea>
       <Trail
@@ -20,18 +29,23 @@ const Content = ({ matches }) => {
         items={matches}
         from={{
           opacity: 0,
-          transform: 'translate3d(100px,0,0)'
+          transform: 'translateX(-100px)'
         }}
         to={{
           opacity: 1,
-          transform: 'translate3d(0px,0,0)'
+          transform: 'translateX(0px)'
         }}
         keys={item => item.matchId}
       >
-        {item => props => (
-          <animated.div style={props}>
-            <Card {...item} />
-          </animated.div>
+        {(item, index) => props => (
+          <CardContainer style={props}>
+            <Card
+              {...item}
+              index={index}
+              selectedIndex={selectedIndex}
+              onSelect={onSelect}
+            />
+          </CardContainer>
         )}
       </Trail>
     </ScrollableArea>

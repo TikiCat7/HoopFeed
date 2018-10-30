@@ -13,8 +13,8 @@ const matches = [
   },
   {
     matchId: 2,
-    homeTeam: 'Lakers',
-    awayTeam: 'Raptors',
+    homeTeam: 'Warriors',
+    awayTeam: 'Bulls',
     status: '1',
     time: 'Q4 7:14',
     homeScore: '98',
@@ -26,7 +26,7 @@ const matches = [
   {
     matchId: 3,
     homeTeam: 'Lakers',
-    awayTeam: 'Raptors',
+    awayTeam: 'Wolves',
     status: '3',
     time: 'Q4 7:14',
     homeScore: '98',
@@ -37,8 +37,8 @@ const matches = [
   },
   {
     matchId: 4,
-    homeTeam: 'Lakers',
-    awayTeam: 'Raptors',
+    homeTeam: 'Pelicans',
+    awayTeam: 'Nuggets',
     status: '1',
     time: 'Q4 7:14',
     homeScore: '98',
@@ -49,8 +49,8 @@ const matches = [
   },
   {
     matchId: 5,
-    homeTeam: 'Lakers',
-    awayTeam: 'Raptors',
+    homeTeam: 'Nets',
+    awayTeam: 'Knicks',
     status: '1',
     time: 'Q4 7:14',
     homeScore: '98',
@@ -61,8 +61,8 @@ const matches = [
   },
   {
     matchId: 6,
-    homeTeam: 'Lakers',
-    awayTeam: 'Raptors',
+    homeTeam: 'Hawks',
+    awayTeam: 'Sixers',
     status: '1',
     time: 'Q4 7:14',
     homeScore: '98',
