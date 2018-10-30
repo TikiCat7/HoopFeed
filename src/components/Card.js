@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 import CardHeader from './CardHeader';
 import TeamInfo from './TeamInfo';
 import GameTime from './GameTime';
+import ScoreTable from './ScoreTable';
 
 const CardWrapper = styled(animated.div)`
   user-select: none;
@@ -21,6 +22,14 @@ const CardContent = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+`;
+
+const CardCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
 `;
 
 const Card = ({
@@ -43,12 +52,16 @@ const Card = ({
   let [cardHeight, setCardHeight] = useState(140);
   let [teamFontSize, setTeamFontSize] = useState(24);
   let [scoreFontSize, setScoreFontSize] = useState(36);
+  let [scoreTableOpacity, setScoreTableOpacity] = useState(0);
+  let [scoreTableDisplay, setScoreTableDisplay] = useState('none');
 
   const onCardClick = () => {
     toggleCardOpen(!cardOpen);
     setCardHeight(cardOpen ? 140 : 300);
     setTeamFontSize(cardOpen ? 24 : 15);
     setScoreFontSize(cardOpen ? 36 : 24);
+    setScoreTableOpacity(cardOpen ? 0 : 1);
+    setScoreTableDisplay(cardOpen ? 'none' : 'inherit');
     onSelect(index);
   };
 
@@ -59,6 +72,7 @@ const Card = ({
         setCardHeight(140);
         setTeamFontSize(24);
         setScoreFontSize(36);
+        setScoreTableDisplay('none');
       }
     },
     [selectedIndex]
@@ -79,6 +93,15 @@ const Card = ({
     from: { fontSize: scoreFontSize },
     config: config.stiff
   });
+
+  const [scoreTableStyle] = useSpring({
+    opacity: scoreTableOpacity,
+    display: scoreTableDisplay,
+    marginTop: 5,
+    from: { opacity: 0, display: 'none' },
+    config: config.stiff
+  });
+
   return (
     <CardWrapper style={cardHeightStyle} onClick={onCardClick}>
       <CardHeader
@@ -94,7 +117,12 @@ const Card = ({
           scoreStyle={scoreStyle}
           score={homeScore}
         />
-        <GameTime cardOpen={cardOpen} finished={finished} time={time} />
+        <CardCenter cardOpen={cardOpen}>
+          <GameTime finished={finished} time={time} />
+          <animated.div style={scoreTableStyle}>
+            <ScoreTable />
+          </animated.div>
+        </CardCenter>
         <TeamInfo
           teamName={awayTeam}
           teamNameStyle={teamNameStyle}
