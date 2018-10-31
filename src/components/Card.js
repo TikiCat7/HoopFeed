@@ -43,25 +43,16 @@ const Card = ({
   highlights,
   homeRecord,
   awayRecord,
+  scoreTable,
   index,
   selectedIndex,
   onSelect
 }) => {
   const finished = status !== '3';
   let [cardOpen, toggleCardOpen] = useState(false);
-  let [cardHeight, setCardHeight] = useState(140);
-  let [teamFontSize, setTeamFontSize] = useState(24);
-  let [scoreFontSize, setScoreFontSize] = useState(36);
-  let [scoreTableOpacity, setScoreTableOpacity] = useState(0);
-  let [scoreTableDisplay, setScoreTableDisplay] = useState('none');
 
   const onCardClick = () => {
     toggleCardOpen(!cardOpen);
-    setCardHeight(cardOpen ? 140 : 300);
-    setTeamFontSize(cardOpen ? 24 : 15);
-    setScoreFontSize(cardOpen ? 36 : 24);
-    setScoreTableOpacity(cardOpen ? 0 : 1);
-    setScoreTableDisplay(cardOpen ? 'none' : 'inherit');
     onSelect(index);
   };
 
@@ -69,39 +60,36 @@ const Card = ({
     () => {
       if (selectedIndex !== index && cardOpen) {
         toggleCardOpen(!cardOpen);
-        setCardHeight(140);
-        setTeamFontSize(24);
-        setScoreFontSize(36);
-        setScoreTableDisplay('none');
       }
     },
     [selectedIndex]
   );
 
   const [cardHeightStyle] = useSpring({
-    height: cardHeight,
+    height: cardOpen ? 300 : 140,
     from: { height: 140 },
     config: config.stiff
   });
+
   const [teamNameStyle] = useSpring({
-    fontSize: teamFontSize,
-    from: { fontSize: teamFontSize },
+    fontSize: cardOpen ? 15 : 24,
+    from: { fontSize: 24 },
     config: config.stiff
   });
+
   const [scoreStyle] = useSpring({
-    fontSize: scoreFontSize,
-    from: { fontSize: scoreFontSize },
+    fontSize: cardOpen ? 24 : 36,
+    from: { fontSize: 36 },
     config: config.stiff
   });
 
   const [scoreTableStyle] = useSpring({
-    opacity: scoreTableOpacity,
-    display: scoreTableDisplay,
+    opacity: cardOpen ? 1 : 0,
+    display: cardOpen ? 'inherit' : 'none',
     marginTop: 5,
     from: { opacity: 0, display: 'none' },
     config: config.stiff
   });
-
   return (
     <CardWrapper style={cardHeightStyle} onClick={onCardClick}>
       <CardHeader
@@ -120,7 +108,7 @@ const Card = ({
         <CardCenter cardOpen={cardOpen}>
           <GameTime finished={finished} time={time} />
           <animated.div style={scoreTableStyle}>
-            <ScoreTable />
+            {scoreTable && <ScoreTable data={scoreTable} />}
           </animated.div>
         </CardCenter>
         <TeamInfo

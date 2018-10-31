@@ -9,7 +9,21 @@ const matches = [
     awayScore: '91',
     highlights: true,
     homeRecord: '3-0',
-    awayRecord: '2-1'
+    awayRecord: '2-1',
+    scoreTable: {
+      home: {
+        hq1: 12,
+        hq2: 15,
+        hq3: 14,
+        hq4: 10
+      },
+      away: {
+        aq1: 15,
+        aq2: 13,
+        aq3: 12,
+        aq4: 16
+      }
+    }
   },
   {
     matchId: 2,
@@ -21,7 +35,21 @@ const matches = [
     awayScore: '91',
     highlights: true,
     homeRecord: '3-0',
-    awayRecord: '2-1'
+    awayRecord: '2-1',
+    scoreTable: {
+      home: {
+        hq1: 12,
+        hq2: 15,
+        hq3: 14,
+        hq4: 10
+      },
+      away: {
+        aq1: 15,
+        aq2: 13,
+        aq3: 12,
+        aq4: 16
+      }
+    }
   },
   {
     matchId: 3,
