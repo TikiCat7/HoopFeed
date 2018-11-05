@@ -5,7 +5,7 @@ import { Trail, animated } from 'react-spring';
 
 const PlayerStatsContainer = styled(animated.div)``;
 
-const PlayerStatsSection = ({ stats }) => {
+const PlayerStatsSection = ({ stats, showVideo }) => {
   return (
     <Trail
       native
@@ -27,6 +27,7 @@ const PlayerStatsSection = ({ stats }) => {
             videos={item.videos}
             stats={item.topStats}
             name={item.name}
+            showVideo={showVideo}
           />
         </PlayerStatsContainer>
       )}

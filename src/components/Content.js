@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { Trail, animated } from 'react-spring';
 
 import Card from './Card';
+import VideoOverlay from './VideoOverlay';
 
 const ScrollableArea = styled.div`
   margin-top: 55px;
@@ -19,11 +20,30 @@ const CardContainer = styled(animated.div)`
 `;
 const Content = ({ matches }) => {
   const [selectedIndex, setIndex] = useState(null);
+  let [showVideoOverlay, toggleVideoOverlay] = useState(false);
+  let [selectedVideo, toggleVideoId] = useState(null);
+
+  const showVideo = id => {
+    toggleVideoId(id);
+    toggleVideoOverlay(true);
+  };
+
+  const hideVideo = () => {
+    toggleVideoOverlay(false);
+  };
+
   const onSelect = index => {
     setIndex(index);
   };
   return (
     <ScrollableArea>
+      {showVideoOverlay && (
+        <VideoOverlay
+          videoId={selectedVideo}
+          changeVideo={showVideo}
+          hideVideo={hideVideo}
+        />
+      )}
       <Trail
         native
         items={matches}
@@ -44,6 +64,7 @@ const Content = ({ matches }) => {
               index={index}
               selectedIndex={selectedIndex}
               onSelect={onSelect}
+              showVideo={showVideo}
             />
           </CardContainer>
         )}

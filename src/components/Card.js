@@ -8,6 +8,7 @@ import GameTime from './GameTime';
 import ScoreTable from './ScoreTable';
 import Divider from './Divider';
 import PlayerStatsSection from './PlayerStatsSection';
+import VideoOverlay from './VideoOverlay';
 
 const CardWrapper = styled(animated.div)`
   user-select: none;
@@ -50,6 +51,7 @@ const Card = ({
   index,
   selectedIndex,
   onSelect,
+  showVideo,
   stats = {},
 }) => {
   const finished = status !== '3';
@@ -143,8 +145,14 @@ const Card = ({
           toggleDivider={handleToggleOnClick}
         />
       )}
-      {cardOpen && homeSelected && <PlayerStatsSection stats={stats.home} />}
-      {cardOpen && !homeSelected && <PlayerStatsSection stats={stats.away} />}
+      {cardOpen &&
+        homeSelected && (
+          <PlayerStatsSection stats={stats.home} showVideo={showVideo} />
+        )}
+      {cardOpen &&
+        !homeSelected && (
+          <PlayerStatsSection stats={stats.away} showVideo={showVideo} />
+        )}
     </CardWrapper>
   );
 };

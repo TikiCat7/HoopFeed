@@ -51,7 +51,7 @@ const VideoItem = styled.img`
   margin-left: 10px;
 `;
 
-const PlayerStats = ({ stats = {}, videos = [], name = '' }) => {
+const PlayerStats = ({ stats = {}, videos = [], name = '', showVideo }) => {
   const renderStats = () => {
     return stats.map((stat, index) => {
       return (
@@ -63,9 +63,21 @@ const PlayerStats = ({ stats = {}, videos = [], name = '' }) => {
     });
   };
 
+  const handleVideoClick = (event, id) => {
+    event.stopPropagation();
+    console.log('video was clicked', id);
+    showVideo(id);
+  };
+
   const renderVideos = () => {
     return videos.map((video, index) => {
-      return <VideoItem key={index} src={video.imageSrc} />;
+      return (
+        <VideoItem
+          onClick={event => handleVideoClick(event, video.id)}
+          key={index}
+          src={video.imageSrc}
+        />
+      );
     });
   };
 
