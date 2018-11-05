@@ -25,14 +25,12 @@ const Divider = ({ homeSelected, toggleDivider }) => {
     from: { left: homeSelected ? -82.5 : 82.5 },
   });
 
-  const handleClick = event => {
-    event.stopPropagation();
-    toggleDivider(!homeSelected);
-  };
-
   return (
     <DividerWrapper>
-      <DividerItem style={dividerStyle} onClick={handleClick} />
+      <DividerItem
+        style={dividerStyle}
+        onClick={event => toggleDivider(event)}
+      />
     </DividerWrapper>
   );
 };

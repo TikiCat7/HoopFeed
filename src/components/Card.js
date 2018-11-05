@@ -24,6 +24,7 @@ const CardContent = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-bottom: 5px;
 `;
 
 const CardCenter = styled.div`
@@ -69,8 +70,13 @@ const Card = ({
     [selectedIndex],
   );
 
+  const handleToggleOnClick = event => {
+    event.stopPropagation();
+    toggleDivider(!homeSelected);
+  }
+
   const [cardHeightStyle] = useSpring({
-    height: cardOpen ? 400 : 140,
+    height: cardOpen ? 420 : 140,
     from: { height: 140 },
     config: config.stiff,
   });
@@ -103,6 +109,10 @@ const Card = ({
       />
       <CardContent>
         <TeamInfo
+          home
+          homeSelected={homeSelected}
+          toggleDivider={handleToggleOnClick}
+          cardOpen={cardOpen}
           teamName={homeTeam}
           teamNameStyle={teamNameStyle}
           record={homeRecord}
@@ -116,6 +126,10 @@ const Card = ({
           </animated.div>
         </CardCenter>
         <TeamInfo
+          home={false}
+          homeSelected={homeSelected}
+          toggleDivider={handleToggleOnClick}
+          cardOpen={cardOpen}
           teamName={awayTeam}
           teamNameStyle={teamNameStyle}
           record={awayRecord}
@@ -124,7 +138,7 @@ const Card = ({
         />
       </CardContent>
       {cardOpen && (
-        <Divider homeSelected={homeSelected} toggleDivider={toggleDivider} />
+        <Divider homeSelected={homeSelected} toggleDivider={handleToggleOnClick} />
       )}
       {cardOpen && homeSelected && <PlayerStatsSection stats={stats.home} />}
       {cardOpen && !homeSelected && <PlayerStatsSection stats={stats.away} />}

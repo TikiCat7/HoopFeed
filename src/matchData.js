@@ -47,17 +47,7 @@ const matches = [
               title: 'Lebron James Highlights',
               url: 'aaa',
               imageSrc: 'https://i.ytimg.com/vi/nDCWFDFUKgw/hqdefault.jpg',
-            },
-            {
-              title: 'Lebron James Highlights',
-              url: 'aaa',
-              imageSrc: 'https://i.ytimg.com/vi/nDCWFDFUKgw/hqdefault.jpg',
-            },
-            {
-              title: 'Lebron James Highlights',
-              url: 'aaa',
-              imageSrc: 'https://i.ytimg.com/vi/nDCWFDFUKgw/hqdefault.jpg',
-            },
+            }
           ],
         },
         {
@@ -86,12 +76,7 @@ const matches = [
               title: 'Lebron James Highlights',
               url: 'aaa',
               imageSrc: 'https://i.ytimg.com/vi/nDCWFDFUKgw/hqdefault.jpg',
-            },
-            {
-              title: 'Lebron James Highlights',
-              url: 'aaa',
-              imageSrc: 'https://i.ytimg.com/vi/nDCWFDFUKgw/hqdefault.jpg',
-            },
+            }
           ],
         },
         {

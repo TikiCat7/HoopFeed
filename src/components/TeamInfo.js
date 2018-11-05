@@ -30,9 +30,24 @@ const TeamRecord = styled.span`
   margin-top: 5px;
 `;
 
-const TeamInfo = ({ teamName, teamNameStyle, record, scoreStyle, score }) => {
+const TeamInfo = ({
+  teamName,
+  teamNameStyle,
+  record,
+  scoreStyle,
+  score,
+  toggleDivider,
+  cardOpen,
+  homeSelected,
+  home,
+}) => {
+  const handleClick = event => {
+    homeSelected && !home && cardOpen && toggleDivider(event);
+    !homeSelected && home && cardOpen && toggleDivider(event);
+    cardOpen && event.stopPropagation();
+  };
   return (
-    <TeamInfoWrapper>
+    <TeamInfoWrapper onClick={handleClick}>
       <TeamName style={teamNameStyle}>{teamName}</TeamName>
       <TeamRecord>{record}</TeamRecord>
       <Score style={scoreStyle}>{score}</Score>

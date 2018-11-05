@@ -13,13 +13,14 @@ const PlayerName = styled.span`
   font-size: 13px;
   font-family: 'SF-Pro-Heavy';
   color: white;
+  margin-left: 10px;
 `;
 
 const Stats = styled.span`
   color: #848181;
   font-size: 10px;
   font-family: 'SF-Pro-Medium';
-  margin-left: 35px;
+  margin-left: 28px;
 `;
 
 const StatNumber = styled.span`
@@ -32,7 +33,8 @@ const StatNumber = styled.span`
 const VideoRow = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  width: 100%;
 `;
 
 const StatsRow = styled.div`
@@ -40,12 +42,13 @@ const StatsRow = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  margin-left: 20px;
+  margin-bottom: 10px;
 `;
 
 const VideoItem = styled.img`
-  width: 100px;
-  height: 65px;
+  width: 97px;
+  height: 64px;
+  margin-left: 10px;
 `;
 
 const PlayerStats = ({ stats = {}, videos = [], name = '' }) => {
