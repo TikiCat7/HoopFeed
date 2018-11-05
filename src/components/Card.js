@@ -73,7 +73,7 @@ const Card = ({
   const handleToggleOnClick = event => {
     event.stopPropagation();
     toggleDivider(!homeSelected);
-  }
+  };
 
   const [cardHeightStyle] = useSpring({
     height: cardOpen ? 420 : 140,
@@ -138,7 +138,10 @@ const Card = ({
         />
       </CardContent>
       {cardOpen && (
-        <Divider homeSelected={homeSelected} toggleDivider={handleToggleOnClick} />
+        <Divider
+          homeSelected={homeSelected}
+          toggleDivider={handleToggleOnClick}
+        />
       )}
       {cardOpen && homeSelected && <PlayerStatsSection stats={stats.home} />}
       {cardOpen && !homeSelected && <PlayerStatsSection stats={stats.away} />}
