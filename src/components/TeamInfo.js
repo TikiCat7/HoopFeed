@@ -19,12 +19,12 @@ const TeamName = styled(animated.div)`
 `;
 
 const Score = styled(animated.span)`
-  font-family: 'Fugaz One';
+  font-family: 'Fugaz One', cursive;
   color: white;
 `;
 
 const TeamRecord = styled.span`
-  font-family: 'Fugaz One', cursive;
+  font-family: 'SF-Pro-Heavy';
   color: #848181;
   font-size: 10px;
   margin-top: 5px;

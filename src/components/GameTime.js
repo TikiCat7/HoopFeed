@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 
 const GameTimeWrapper = styled.div`
   min-width: 60px;
+  font-family: 'SF-Pro-Medium';
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,12 +11,17 @@ const GameTimeWrapper = styled.div`
   font-size: 12px;
   color: white;
   font-weight: 800;
-  font-style: italic;
   transition: transform 0.3s ease-in-out;
 `;
 
+const Final = styled.span`
+  font-family: 'Fugaz One', cursive;
+`;
+
 const GameTime = ({ finished, time }) => {
-  return <GameTimeWrapper>{finished ? 'FINAL' : time}</GameTimeWrapper>;
+  return (
+    <GameTimeWrapper>{finished ? <Final>FINAL</Final> : time}</GameTimeWrapper>
+  );
 };
 
 export default GameTime;

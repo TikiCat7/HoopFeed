@@ -6,6 +6,8 @@ import CardHeader from './CardHeader';
 import TeamInfo from './TeamInfo';
 import GameTime from './GameTime';
 import ScoreTable from './ScoreTable';
+import Divider from './Divider';
+import PlayerStatsSection from './PlayerStatsSection';
 
 const CardWrapper = styled(animated.div)`
   user-select: none;
@@ -46,10 +48,12 @@ const Card = ({
   scoreTable,
   index,
   selectedIndex,
-  onSelect
+  onSelect,
+  stats = {},
 }) => {
   const finished = status !== '3';
   let [cardOpen, toggleCardOpen] = useState(false);
+  let [homeSelected, toggleDivider] = useState(true);
 
   const onCardClick = () => {
     toggleCardOpen(!cardOpen);
@@ -62,25 +66,25 @@ const Card = ({
         toggleCardOpen(!cardOpen);
       }
     },
-    [selectedIndex]
+    [selectedIndex],
   );
 
   const [cardHeightStyle] = useSpring({
-    height: cardOpen ? 300 : 140,
+    height: cardOpen ? 400 : 140,
     from: { height: 140 },
-    config: config.stiff
+    config: config.stiff,
   });
 
   const [teamNameStyle] = useSpring({
     fontSize: cardOpen ? 15 : 24,
     from: { fontSize: 24 },
-    config: config.stiff
+    config: config.stiff,
   });
 
   const [scoreStyle] = useSpring({
     fontSize: cardOpen ? 24 : 36,
     from: { fontSize: 36 },
-    config: config.stiff
+    config: config.stiff,
   });
 
   const [scoreTableStyle] = useSpring({
@@ -88,7 +92,7 @@ const Card = ({
     display: cardOpen ? 'inherit' : 'none',
     marginTop: 5,
     from: { opacity: 0, display: 'none' },
-    config: config.stiff
+    config: config.stiff,
   });
   return (
     <CardWrapper style={cardHeightStyle} onClick={onCardClick}>
@@ -119,6 +123,11 @@ const Card = ({
           score={awayScore}
         />
       </CardContent>
+      {cardOpen && (
+        <Divider homeSelected={homeSelected} toggleDivider={toggleDivider} />
+      )}
+      {cardOpen && homeSelected && <PlayerStatsSection stats={stats.home} />}
+      {cardOpen && !homeSelected && <PlayerStatsSection stats={stats.away} />}
     </CardWrapper>
   );
 };

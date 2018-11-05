@@ -29,11 +29,11 @@ const Content = ({ matches }) => {
         items={matches}
         from={{
           opacity: 0,
-          transform: 'translateX(-100px)'
+          transform: 'translateX(-100px)',
         }}
         to={{
           opacity: 1,
-          transform: 'translateX(0px)'
+          transform: 'translateX(0px)',
         }}
         keys={item => item.matchId}
       >

@@ -4,6 +4,18 @@
     url('./fonts/FugazOne-Regular.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'SF-Pro-Heavy';
+  src: local('SF-Pro-Heavy'),
+    url('./fonts/SF-Pro-Text-Heavy.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SF-Pro-Medium';
+  src: local('SF-Pro-Medium'),
+    url('./fonts/SF-Pro-Text-Medium.otf') format('truetype');
+}
+
 body {
   margin: 0;
   padding: 0;
