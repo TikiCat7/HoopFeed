@@ -10,23 +10,24 @@ const VideoOverlayWrapper = styled.div`
   opacity: 1;
   top: 55px;
   z-index: 1;
-`
+`;
 
 const VideoContent = styled.div`
- display: flex;
- align-items: center;
- justify-content: center;
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const VideoOverlay = ({ videoId, changeVideo, hideVideo }) => {
   return (
     <VideoOverlayWrapper>
       <VideoContent>
-        Play {videoId}!!!
+        Play {videoId}
+        !!!
       </VideoContent>
       <div onClick={hideVideo}>Close Video</div>
     </VideoOverlayWrapper>
   );
-}
+};
 
 export default VideoOverlay;
