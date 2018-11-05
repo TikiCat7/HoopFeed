@@ -1,7 +1,8 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
 const PlayerStatWrapper = styled.div`
+  background-color: red;
   display: flex;
   align-items: center;
   justify-content: flex-start;
