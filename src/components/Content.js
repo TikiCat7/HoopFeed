@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
-import { Trail, animated } from 'react-spring';
+import { Trail, animated, Transition } from 'react-spring';
 
+import AppContext from './AppContext';
+import VideoContext from './VideoContext';
 import Card from './Card';
 import VideoOverlay from './VideoOverlay';
 
@@ -11,20 +13,28 @@ const ScrollableArea = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 const CardContainer = styled(animated.div)`
-  &:first-child {
-    margin-top: 10px;
-  }
+  display: ${props => (props.show === 1 ? 'none' : 'inherit')};
 `;
+
 const Content = ({ matches }) => {
-  const [selectedIndex, setIndex] = useState(null);
-  let [showVideoOverlay, toggleVideoOverlay] = useState(false);
-  let [selectedVideo, toggleVideoId] = useState(null);
+  const {
+    selectedIndex,
+    setIndex,
+  } = useContext(AppContext);
+
+  const {
+    selectedVideo,
+    setVideoId,
+    showVideoOverlay,
+    toggleVideoOverlay,
+  } = useContext(VideoContext);
 
   const showVideo = id => {
-    toggleVideoId(id);
+    setVideoId(id);
     toggleVideoOverlay(true);
   };
 
@@ -35,15 +45,27 @@ const Content = ({ matches }) => {
   const onSelect = index => {
     setIndex(index);
   };
+
   return (
     <ScrollableArea>
-      {showVideoOverlay && (
-        <VideoOverlay
-          videoId={selectedVideo}
-          changeVideo={showVideo}
-          hideVideo={hideVideo}
-        />
-      )}
+      <Transition
+        items={showVideoOverlay}
+        from={{ opacity: 0, transform: 'translate3d(0,-40px,0)' }}
+        enter={{ opacity: 1, transform: 'translate3d(0,0px,0)' }}
+        leave={{ opacity: 0, transform: 'translate3d(0,-40px,0)' }}
+      >
+        {show =>
+          show &&
+          (props => (
+            <VideoOverlay
+              videoId={selectedVideo}
+              changeVideo={showVideo}
+              hideVideo={hideVideo}
+              style={props}
+            />
+          ))
+        }
+      </Transition>
       <Trail
         native
         items={matches}
@@ -58,7 +80,11 @@ const Content = ({ matches }) => {
         keys={item => item.matchId}
       >
         {(item, index) => props => (
-          <CardContainer style={props}>
+          // work around for https://github.com/styled-components/styled-components/issues/1198
+          <CardContainer
+            style={props}
+            show={showVideoOverlay ? 1 : 0}
+          >
             <Card
               {...item}
               index={index}

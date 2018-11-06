@@ -8,7 +8,6 @@ import GameTime from './GameTime';
 import ScoreTable from './ScoreTable';
 import Divider from './Divider';
 import PlayerStatsSection from './PlayerStatsSection';
-import VideoOverlay from './VideoOverlay';
 
 const CardWrapper = styled(animated.div)`
   user-select: none;

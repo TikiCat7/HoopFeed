@@ -65,7 +65,6 @@ const PlayerStats = ({ stats = {}, videos = [], name = '', showVideo }) => {
 
   const handleVideoClick = (event, id) => {
     event.stopPropagation();
-    console.log('video was clicked', id);
     showVideo(id);
   };
 

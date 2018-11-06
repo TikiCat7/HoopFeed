@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import Hamburger from './Hamburger';
-
-import { ReactComponent as Ball } from '../images/ball.svg';
+import { ReactComponent as Ball } from '../images/ball.svg'
 
 let HeaderWrapper = styled.div`
   user-select: none;
