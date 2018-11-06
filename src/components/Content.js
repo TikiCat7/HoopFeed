@@ -21,10 +21,7 @@ const CardContainer = styled(animated.div)`
 `;
 
 const Content = ({ matches }) => {
-  const {
-    selectedIndex,
-    setIndex,
-  } = useContext(AppContext);
+  const { selectedIndex, setIndex } = useContext(AppContext);
 
   const {
     selectedVideo,
@@ -81,10 +78,7 @@ const Content = ({ matches }) => {
       >
         {(item, index) => props => (
           // work around for https://github.com/styled-components/styled-components/issues/1198
-          <CardContainer
-            style={props}
-            show={showVideoOverlay ? 1 : 0}
-          >
+          <CardContainer style={props} show={showVideoOverlay ? 1 : 0}>
             <Card
               {...item}
               index={index}
