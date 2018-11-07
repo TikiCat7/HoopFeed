@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import { Trail, animated, Transition } from 'react-spring';
 
-import AppContext from './AppContext';
-import VideoContext from './VideoContext';
+import AppContext from '../context/AppContext';
+import VideoContext from '../context/VideoContext';
 import Card from './Card';
 import VideoOverlay from './VideoOverlay';
 

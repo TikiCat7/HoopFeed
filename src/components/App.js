@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import AppContext from './AppContext';
-import VideoContext from './VideoContext';
+import AppContext from '../context/AppContext';
+import VideoContext from '../context/VideoContext';
 import Header from './Header';
 import Content from './Content';
 import matches from '../matchData';
