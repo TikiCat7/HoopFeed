@@ -9,6 +9,7 @@ import matches from '../matchData';
 const App = () => {
   const [showVideoOverlay, toggleVideoOverlay] = useState(false);
   const [selectedVideo, setVideoId] = useState(null);
+  const [videoPlaying, toggleVideoPlay] = useState(false);
   const [selectedIndex, setIndex] = useState(null);
 
   return (
@@ -22,6 +23,8 @@ const App = () => {
         value={{
           showVideoOverlay,
           toggleVideoOverlay,
+          videoPlaying,
+          toggleVideoPlay,
           selectedVideo,
           setVideoId,
         }}

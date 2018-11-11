@@ -17,6 +17,9 @@ const ScrollableArea = styled.div`
 `;
 
 const CardContainer = styled(animated.div)`
+  :first-child {
+    margin-top: 20px;
+  }
   display: ${props => (props.show === 1 ? 'none' : 'inherit')};
 `;
 
@@ -28,6 +31,8 @@ const Content = ({ matches }) => {
     setVideoId,
     showVideoOverlay,
     toggleVideoOverlay,
+    videoPlaying,
+    toggleVideoPlay,
   } = useContext(VideoContext);
 
   const showVideo = id => {
@@ -45,24 +50,6 @@ const Content = ({ matches }) => {
 
   return (
     <ScrollableArea>
-      <Transition
-        items={showVideoOverlay}
-        from={{ opacity: 0, transform: 'translate3d(0,-40px,0)' }}
-        enter={{ opacity: 1, transform: 'translate3d(0,0px,0)' }}
-        leave={{ opacity: 0, transform: 'translate3d(0,-40px,0)' }}
-      >
-        {show =>
-          show &&
-          (props => (
-            <VideoOverlay
-              videoId={selectedVideo}
-              changeVideo={showVideo}
-              hideVideo={hideVideo}
-              style={props}
-            />
-          ))
-        }
-      </Transition>
       <Trail
         native
         items={matches}
@@ -89,6 +76,26 @@ const Content = ({ matches }) => {
           </CardContainer>
         )}
       </Trail>
+      <Transition
+        items={showVideoOverlay}
+        from={{ opacity: 0, transform: 'translate3d(-50px,0,0)' }}
+        enter={{ opacity: 1, transform: 'translate3d(0px,0,0)' }}
+        leave={{ opacity: 0, transform: 'translate3d(-50px,0,0)' }}
+      >
+        {show =>
+          show &&
+          (props => (
+            <VideoOverlay
+              videoId={selectedVideo}
+              changeVideo={showVideo}
+              hideVideo={hideVideo}
+              videoPlaying={videoPlaying}
+              toggleVideoPlay={toggleVideoPlay}
+              style={props}
+            />
+          ))
+        }
+      </Transition>
     </ScrollableArea>
   );
 };

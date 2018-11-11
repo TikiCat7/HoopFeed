@@ -7,7 +7,7 @@ import '../index.css';
 const VideoOverlayWrapper = styled(animated.div)`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 55px);
   background-color: black;
   top: 55px;
   z-index: 1;
@@ -22,17 +22,29 @@ const Content = styled.div`
   font-family: 'Fugaz one';
   color: white;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 `;
 
 const VideoContent = styled.div`
   position: relative;
   overflow: hidden;
   padding-top: 56.25%;
-  /* width: 375px; */
+  /* top: 25%; */
 `;
 
-const VideoOverlay = ({ videoId, changeVideo, hideVideo, style }) => {
+const VideoCloseButton = styled.div`
+  text-align: center;
+  padding: 10px;
+`;
+
+const VideoOverlay = ({
+  videoPlaying,
+  toggleVideoPlay,
+  videoId,
+  changeVideo,
+  hideVideo,
+  style,
+}) => {
   const opts = {
     height: '300px',
     width: '300px',
@@ -54,21 +66,25 @@ const VideoOverlay = ({ videoId, changeVideo, hideVideo, style }) => {
     console.log('video is ready!');
   };
 
+  const onVideoPlay = () => {
+    toggleVideoPlay(true);
+  };
+
   return (
     <React.Fragment>
       <VideoOverlayWrapper style={style}>
         <Content>
-          <span>VIDEO</span>
-          <VideoContent>
+          <VideoContent videoPlaying={videoPlaying}>
             <YouTube
               className="iframe-style"
               style={iframeStyle}
               opts={opts}
               videoId={videoId}
               onReady={onVideoReady}
+              onPlay={onVideoPlay}
             />
           </VideoContent>
-          <div onClick={hideVideo}>close video</div>
+          <VideoCloseButton onClick={hideVideo}>CLOSE</VideoCloseButton>
         </Content>
       </VideoOverlayWrapper>
     </React.Fragment>
