@@ -1,7 +1,7 @@
 {
   "main.css": "/hoopfeed/static/css/main.a515f053.chunk.css",
-  "main.js": "/hoopfeed/static/js/main.89f827c5.chunk.js",
-  "main.js.map": "/hoopfeed/static/js/main.89f827c5.chunk.js.map",
+  "main.js": "/hoopfeed/static/js/main.a3e2afab.chunk.js",
+  "main.js.map": "/hoopfeed/static/js/main.a3e2afab.chunk.js.map",
   "static/js/1.98c7108c.chunk.js": "/hoopfeed/static/js/1.98c7108c.chunk.js",
   "static/js/1.98c7108c.chunk.js.map": "/hoopfeed/static/js/1.98c7108c.chunk.js.map",
   "runtime~main.js": "/hoopfeed/static/js/runtime~main.6251f99e.js",
@@ -10,6 +10,6 @@
   "static/media/ball.461bb02d.svg": "/hoopfeed/static/media/ball.461bb02d.svg",
   "static/css/main.a515f053.chunk.css.map": "/hoopfeed/static/css/main.a515f053.chunk.css.map",
   "index.html": "/hoopfeed/index.html",
-  "precache-manifest.e83a9916ea1dd30d3591891ca23d1864.js": "/hoopfeed/precache-manifest.e83a9916ea1dd30d3591891ca23d1864.js",
+  "precache-manifest.2f28329410e60466bee010fbc7f53e6f.js": "/hoopfeed/precache-manifest.2f28329410e60466bee010fbc7f53e6f.js",
   "service-worker.js": "/hoopfeed/service-worker.js"
 }
