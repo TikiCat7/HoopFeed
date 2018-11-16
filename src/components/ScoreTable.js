@@ -27,10 +27,9 @@ const Score = styled.span`
   color: #848181;
 `;
 
-const ScoreTable = ({ data = {} }) => {
-  const { home, away } = data;
-  const { hq1, hq2, hq3, hq4 } = home;
-  const { aq1, aq2, aq3, aq4 } = away;
+const ScoreTable = ({ homeScores, awayScores }) => {
+  const [hq1 = 0, hq2 = 0, hq3 = 0, hq4 = 0] = homeScores;
+  const [aq1 = 0, aq2 = 0, aq3 = 0, aq4 = 0] = awayScores;
   return (
     <ScoreTableContent>
       <ScoreRow>

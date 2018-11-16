@@ -37,23 +37,29 @@ const CardCenter = styled.div`
 
 const Card = ({
   matchId,
-  homeTeam,
-  awayTeam,
-  status,
-  time,
-  homeScore,
-  awayScore,
+  startTimeUTC,
+  hTeamName,
+  vTeamName,
+  statusNum,
+  hTeamScore,
+  vTeamScore,
   highlights,
-  homeRecord,
-  awayRecord,
-  scoreTable,
+  hTeamRecordFormatted,
+  vTeamRecordFormatted,
+  hTeamQScore,
+  vTeamQScore,
   index,
   selectedIndex,
   onSelect,
   showVideo,
-  stats = {},
+  currentPeriod,
+  gameClock,
+  isHalfTime,
+  isEndofPeriod,
+  stats = [],
+  youtubevideos = [],
 }) => {
-  const finished = status !== '3';
+  const finished = statusNum === 3;
   let [cardOpen, toggleCardOpen] = useState(false);
   let [homeSelected, toggleDivider] = useState(true);
 
@@ -101,12 +107,35 @@ const Card = ({
     from: { opacity: 0, display: 'none' },
     config: config.stiff,
   });
+
+  const formatTime = (
+    currentPeriod,
+    gameClock,
+    statusNum,
+    isHalfTime,
+    isEndOfPeriod,
+  ) => {
+    if (statusNum === 3) {
+      return 'FINAL';
+    } else if (isHalfTime) {
+      return 'HALF TIME';
+    } else if (isEndOfPeriod) {
+      return `END OF Q${currentPeriod}`;
+    } else if (statusNum === 1) {
+      return startTimeUTC;
+    } else if (gameClock === null) {
+      return `END OF Q${currentPeriod}`;
+    } else {
+      return `Q${currentPeriod} ${gameClock}`;
+    }
+  };
+
   return (
     <CardWrapper style={cardHeightStyle} onClick={onCardClick}>
       <CardHeader
         finished={finished}
         cardOpen={cardOpen}
-        highlights={highlights}
+        highlights={youtubevideos.length > 0}
       />
       <CardContent>
         <TeamInfo
@@ -114,16 +143,27 @@ const Card = ({
           homeSelected={homeSelected}
           toggleDivider={handleToggleOnClick}
           cardOpen={cardOpen}
-          teamName={homeTeam}
+          teamName={hTeamName}
           teamNameStyle={teamNameStyle}
-          record={homeRecord}
+          record={hTeamRecordFormatted}
           scoreStyle={scoreStyle}
-          score={homeScore}
+          score={hTeamScore}
         />
         <CardCenter cardOpen={cardOpen}>
-          <GameTime finished={finished} time={time} />
+          <GameTime
+            time={formatTime(
+              currentPeriod,
+              gameClock,
+              statusNum,
+              isHalfTime,
+              isEndofPeriod,
+            )}
+          />
           <animated.div style={scoreTableStyle}>
-            {scoreTable && <ScoreTable data={scoreTable} />}
+            {hTeamQScore &&
+              vTeamQScore && (
+                <ScoreTable homeScores={hTeamQScore} awayScores={vTeamQScore} />
+              )}
           </animated.div>
         </CardCenter>
         <TeamInfo
@@ -131,11 +171,11 @@ const Card = ({
           homeSelected={homeSelected}
           toggleDivider={handleToggleOnClick}
           cardOpen={cardOpen}
-          teamName={awayTeam}
+          teamName={vTeamName}
           teamNameStyle={teamNameStyle}
-          record={awayRecord}
+          record={vTeamRecordFormatted}
           scoreStyle={scoreStyle}
-          score={awayScore}
+          score={vTeamScore}
         />
       </CardContent>
       {cardOpen && (

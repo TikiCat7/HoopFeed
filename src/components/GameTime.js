@@ -18,9 +18,11 @@ const Final = styled.span`
   font-family: 'Fugaz One', cursive;
 `;
 
-const GameTime = ({ finished, time }) => {
+const GameTime = ({ time }) => {
   return (
-    <GameTimeWrapper>{finished ? <Final>FINAL</Final> : time}</GameTimeWrapper>
+    <GameTimeWrapper>
+      <Final>{time}</Final>
+    </GameTimeWrapper>
   );
 };
 
