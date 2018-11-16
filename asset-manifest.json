@@ -1,15 +1,15 @@
 {
-  "main.css": "/HoopFeed/static/css/main.a9db0017.chunk.css",
-  "main.js": "/HoopFeed/static/js/main.0fb3eb75.chunk.js",
-  "main.js.map": "/HoopFeed/static/js/main.0fb3eb75.chunk.js.map",
-  "static/js/1.912628be.chunk.js": "/HoopFeed/static/js/1.912628be.chunk.js",
-  "static/js/1.912628be.chunk.js.map": "/HoopFeed/static/js/1.912628be.chunk.js.map",
-  "runtime~main.js": "/HoopFeed/static/js/runtime~main.fbd2e91a.js",
-  "runtime~main.js.map": "/HoopFeed/static/js/runtime~main.fbd2e91a.js.map",
-  "static/media/index.css": "/HoopFeed/static/media/SF-Pro-Text-Heavy.7e3a0b3e.otf",
-  "static/media/ball.461bb02d.svg": "/HoopFeed/static/media/ball.461bb02d.svg",
-  "static/css/main.a9db0017.chunk.css.map": "/HoopFeed/static/css/main.a9db0017.chunk.css.map",
-  "index.html": "/HoopFeed/index.html",
-  "precache-manifest.12df0f6d477e3810d52b9d7cfe63b2ea.js": "/HoopFeed/precache-manifest.12df0f6d477e3810d52b9d7cfe63b2ea.js",
-  "service-worker.js": "/HoopFeed/service-worker.js"
+  "main.css": "/static/css/main.098e0395.chunk.css",
+  "main.js": "/static/js/main.3fe885dd.chunk.js",
+  "main.js.map": "/static/js/main.3fe885dd.chunk.js.map",
+  "static/js/1.0f408fcc.chunk.js": "/static/js/1.0f408fcc.chunk.js",
+  "static/js/1.0f408fcc.chunk.js.map": "/static/js/1.0f408fcc.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
+  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
+  "static/media/index.css": "/static/media/SF-Pro-Text-Heavy.7e3a0b3e.otf",
+  "static/media/ball.461bb02d.svg": "/static/media/ball.461bb02d.svg",
+  "static/css/main.098e0395.chunk.css.map": "/static/css/main.098e0395.chunk.css.map",
+  "index.html": "/index.html",
+  "precache-manifest.126f9ec057b59094e3d5ca2ff26e5d31.js": "/precache-manifest.126f9ec057b59094e3d5ca2ff26e5d31.js",
+  "service-worker.js": "/service-worker.js"
 }
