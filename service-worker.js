@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/hoopfeed/precache-manifest.2f28329410e60466bee010fbc7f53e6f.js"
+  "/HoopFeed/precache-manifest.12df0f6d477e3810d52b9d7cfe63b2ea.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/hoopfeed/index.html", {
+workbox.routing.registerNavigationRoute("/HoopFeed/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

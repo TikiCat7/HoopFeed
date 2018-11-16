@@ -1,15 +1,15 @@
 {
-  "main.css": "/hoopfeed/static/css/main.a515f053.chunk.css",
-  "main.js": "/hoopfeed/static/js/main.a3e2afab.chunk.js",
-  "main.js.map": "/hoopfeed/static/js/main.a3e2afab.chunk.js.map",
-  "static/js/1.98c7108c.chunk.js": "/hoopfeed/static/js/1.98c7108c.chunk.js",
-  "static/js/1.98c7108c.chunk.js.map": "/hoopfeed/static/js/1.98c7108c.chunk.js.map",
-  "runtime~main.js": "/hoopfeed/static/js/runtime~main.6251f99e.js",
-  "runtime~main.js.map": "/hoopfeed/static/js/runtime~main.6251f99e.js.map",
-  "static/media/index.css": "/hoopfeed/static/media/SF-Pro-Text-Heavy.7e3a0b3e.otf",
-  "static/media/ball.461bb02d.svg": "/hoopfeed/static/media/ball.461bb02d.svg",
-  "static/css/main.a515f053.chunk.css.map": "/hoopfeed/static/css/main.a515f053.chunk.css.map",
-  "index.html": "/hoopfeed/index.html",
-  "precache-manifest.2f28329410e60466bee010fbc7f53e6f.js": "/hoopfeed/precache-manifest.2f28329410e60466bee010fbc7f53e6f.js",
-  "service-worker.js": "/hoopfeed/service-worker.js"
+  "main.css": "/HoopFeed/static/css/main.a9db0017.chunk.css",
+  "main.js": "/HoopFeed/static/js/main.0fb3eb75.chunk.js",
+  "main.js.map": "/HoopFeed/static/js/main.0fb3eb75.chunk.js.map",
+  "static/js/1.912628be.chunk.js": "/HoopFeed/static/js/1.912628be.chunk.js",
+  "static/js/1.912628be.chunk.js.map": "/HoopFeed/static/js/1.912628be.chunk.js.map",
+  "runtime~main.js": "/HoopFeed/static/js/runtime~main.fbd2e91a.js",
+  "runtime~main.js.map": "/HoopFeed/static/js/runtime~main.fbd2e91a.js.map",
+  "static/media/index.css": "/HoopFeed/static/media/SF-Pro-Text-Heavy.7e3a0b3e.otf",
+  "static/media/ball.461bb02d.svg": "/HoopFeed/static/media/ball.461bb02d.svg",
+  "static/css/main.a9db0017.chunk.css.map": "/HoopFeed/static/css/main.a9db0017.chunk.css.map",
+  "index.html": "/HoopFeed/index.html",
+  "precache-manifest.12df0f6d477e3810d52b9d7cfe63b2ea.js": "/HoopFeed/precache-manifest.12df0f6d477e3810d52b9d7cfe63b2ea.js",
+  "service-worker.js": "/HoopFeed/service-worker.js"
 }
