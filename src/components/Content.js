@@ -51,7 +51,7 @@ const Content = ({ client }) => {
     setIndex(index);
   };
   return (
-    <Query query={MatchByDateQuery} variables={{ date: '20181117' }}>
+    <Query query={MatchByDateQuery} variables={{ date: '20181116' }}>
       {({ loading, error, data }) => {
         if (loading) return <LoadingIndicator />;
         if (error) return <div>{`Error: ${error}`}</div>;
