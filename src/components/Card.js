@@ -36,14 +36,14 @@ const CardCenter = styled.div`
 `;
 
 const Card = ({
-  matchId,
+  hTeamId,
+  vTeamId,
   startTimeUTC,
   hTeamName,
   vTeamName,
   statusNum,
   hTeamScore,
   vTeamScore,
-  highlights,
   hTeamRecordFormatted,
   vTeamRecordFormatted,
   hTeamQScore,
@@ -56,13 +56,12 @@ const Card = ({
   gameClock,
   isHalfTime,
   isEndofPeriod,
-  stats = [],
+  matchStats = [],
   youtubevideos = [],
 }) => {
   const finished = statusNum === 3;
   let [cardOpen, toggleCardOpen] = useState(false);
   let [homeSelected, toggleDivider] = useState(true);
-
   const onCardClick = () => {
     toggleCardOpen(!cardOpen);
     onSelect(index);
@@ -80,6 +79,10 @@ const Card = ({
   const handleToggleOnClick = event => {
     event.stopPropagation();
     toggleDivider(!homeSelected);
+  };
+
+  const sortMatchStats = (matchstats, teamId) => {
+    return matchStats.filter(stat => stat.player.teamId === teamId);
   };
 
   const [cardHeightStyle] = useSpring({
@@ -186,11 +189,19 @@ const Card = ({
       )}
       {cardOpen &&
         homeSelected && (
-          <PlayerStatsSection stats={stats.home} showVideo={showVideo} />
+          <PlayerStatsSection
+            stats={sortMatchStats(matchStats, hTeamId)}
+            videos={youtubevideos}
+            showVideo={showVideo}
+          />
         )}
       {cardOpen &&
         !homeSelected && (
-          <PlayerStatsSection stats={stats.away} showVideo={showVideo} />
+          <PlayerStatsSection
+            stats={sortMatchStats(matchStats, vTeamId)}
+            videos={youtubevideos}
+            showVideo={showVideo}
+          />
         )}
     </CardWrapper>
   );

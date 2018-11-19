@@ -35,12 +35,14 @@ const MatchByDateQuery = gql`
         statsJSON
         player {
           name
+          teamId
         }
       }
       youtubevideos {
         id
         videoId
         title
+        thumbnailUrlLarge
         player {
           playerId
           name

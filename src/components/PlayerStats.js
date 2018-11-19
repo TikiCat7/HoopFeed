@@ -7,6 +7,7 @@ const PlayerStatWrapper = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   margin-top: 10px;
+  margin-right: 10px;
 `;
 
 const PlayerName = styled.span`
@@ -20,7 +21,6 @@ const Stats = styled.span`
   color: #848181;
   font-size: 10px;
   font-family: 'SF-Pro-Medium';
-  margin-left: 28px;
 `;
 
 const StatNumber = styled.span`
@@ -40,7 +40,7 @@ const VideoRow = styled.div`
 const StatsRow = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
   margin-bottom: 10px;
 `;
@@ -72,9 +72,9 @@ const PlayerStats = ({ stats = {}, videos = [], name = '', showVideo }) => {
     return videos.map((video, index) => {
       return (
         <VideoItem
-          onClick={event => handleVideoClick(event, video.id)}
+          onClick={event => handleVideoClick(event, video.videoId)}
           key={index}
-          src={video.imageSrc}
+          src={video.thumbnailUrlLarge}
         />
       );
     });

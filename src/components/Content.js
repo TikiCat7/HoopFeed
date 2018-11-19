@@ -4,6 +4,7 @@ import { Trail, animated, Transition } from 'react-spring';
 import { Query } from 'react-apollo';
 import { withApollo } from 'react-apollo';
 import MatchByDateQuery from '../queries/MatchByDate';
+import formatDate from '../util/date';
 
 import AppContext from '../context/AppContext';
 import VideoContext from '../context/VideoContext';
@@ -51,7 +52,10 @@ const Content = ({ client }) => {
     setIndex(index);
   };
   return (
-    <Query query={MatchByDateQuery} variables={{ date: '20181117' }}>
+    <Query
+      query={MatchByDateQuery}
+      variables={{ date: formatDate(new Date()) }}
+    >
       {({ loading, error, data }) => {
         if (loading) return <LoadingIndicator />;
         if (error) return <div>{`Error: ${error}`}</div>;
