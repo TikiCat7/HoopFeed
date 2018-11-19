@@ -7,7 +7,7 @@ import { findTopStats, mergeVideosToStats } from '../util/stats';
 const PlayerStatsContainer = styled(animated.div)``;
 
 const PlayerStatsWrapper = styled.div`
-  overflow: 'scroll';
+  overflow: scroll;
   max-height: 300px;
 `;
 
