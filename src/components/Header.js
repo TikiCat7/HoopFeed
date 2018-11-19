@@ -16,10 +16,11 @@ let HeaderWrapper = styled.div`
   z-index: 1;
 `;
 
-let LogoWrapper = styled.div`
+let LogoWrapper = styled.a`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  text-decoration: none;
 `;
 
 let Title = styled.span`
@@ -36,7 +37,7 @@ let BallWrapper = styled.div`
 const Header = () => {
   return (
     <HeaderWrapper>
-      <LogoWrapper>
+      <LogoWrapper href="https://hoopfeed.io">
         <BallWrapper>
           <Ball />
         </BallWrapper>
