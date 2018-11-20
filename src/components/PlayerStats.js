@@ -45,10 +45,14 @@ const StatsRow = styled.div`
   margin-bottom: 10px;
 `;
 
-const VideoItem = styled.img`
-  width: 97px;
-  height: 64px;
+const VideoItem = styled.div`
   margin-left: 10px;
+  background: ${props => `url(${props.src}) center no-repeat`};
+  width: 100px;
+  height: 60px;
+  background-size: 100px 80px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 1px #0000007a;
 `;
 
 const PlayerStats = ({ stats = {}, videos = [], name = '', showVideo }) => {
