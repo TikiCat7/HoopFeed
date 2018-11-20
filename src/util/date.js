@@ -1,7 +1,7 @@
-const formatDate = date => {
+export const formatDate = (date, amount = 0) => {
   let d = new Date(date),
     month = '' + (d.getMonth() + 1),
-    day = '' + d.getDate() - 1,
+    day = '' + d.getDate() - amount,
     year = d.getFullYear();
 
   if (month.length < 2) month = '0' + month;
@@ -10,4 +10,10 @@ const formatDate = date => {
   return `${year}${month}${day}`;
 };
 
-export default formatDate;
+export const splitDate = date => {
+  let year = date.substring(0, 4);
+  let month = date.substring(4, 6);
+  let day = date.substring(6, 8);
+
+  return `${year}-${month}-${day}`;
+};

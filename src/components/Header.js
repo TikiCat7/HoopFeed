@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 
+import { formatDate, splitDate } from '../util/date';
+import AppContext from '../context/AppContext';
 import Hamburger from './Hamburger';
 import { ReactComponent as Ball } from '../images/ball.svg';
 
@@ -34,7 +36,27 @@ let BallWrapper = styled.div`
   margin: 10px;
 `;
 
+let Arrow = styled.p`
+  color: white;
+  font-family: 'Fugaz One', cursive;
+  font-weight: 800;
+  font-size: 20px;
+`;
+
+let DateStyle = styled.p`
+  color: white;
+  font-family: 'Fugaz One', cursive;
+  font-weight: 800;
+  font-size: 14px;
+`;
+
 const Header = () => {
+  const { matchDate, setMatchDate } = useContext(AppContext);
+  const adjustedDate = direction => {
+    return new Date(
+      matchDate.setTime(matchDate.getTime() - 1 * direction * 86400000),
+    );
+  };
   return (
     <HeaderWrapper>
       <LogoWrapper href="https://hoopfeed.io">
@@ -43,6 +65,9 @@ const Header = () => {
         </BallWrapper>
         <Title>HOOPFEED</Title>
       </LogoWrapper>
+      <Arrow onClick={() => setMatchDate(adjustedDate(1))}>←</Arrow>
+      <DateStyle>{splitDate(formatDate(matchDate))}</DateStyle>
+      <Arrow onClick={() => setMatchDate(adjustedDate(-1))}>→</Arrow>
       <Hamburger />
     </HeaderWrapper>
   );
