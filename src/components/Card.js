@@ -62,6 +62,7 @@ const Card = ({
   let [cardOpen, toggleCardOpen] = useState(false);
   let [homeSelected, toggleDivider] = useState(true);
   const onCardClick = () => {
+    if (statusNum === 1) return;
     toggleCardOpen(!cardOpen);
     onSelect(index);
   };
@@ -135,7 +136,7 @@ const Card = ({
   return (
     <CardWrapper style={cardHeightStyle} onClick={onCardClick}>
       <CardHeader
-        live={statusNum === 2}
+        statusNum={statusNum}
         cardOpen={cardOpen}
         highlights={youtubevideos.length > 0}
       />

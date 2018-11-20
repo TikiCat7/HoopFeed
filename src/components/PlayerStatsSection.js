@@ -20,29 +20,33 @@ const PlayerStatsSection = ({ stats, showVideo, videos }) => {
   let sortedStatsWithVideo = mergeVideosToStats(sortedStats, videos);
   return (
     <PlayerStatsWrapper>
-      <Trail
-        native
-        items={sortedStatsWithVideo}
-        from={{
-          opacity: 0,
-        }}
-        to={{
-          opacity: 1,
-        }}
-        keys={item => item.name}
-      >
-        {(item, index) => props => (
-          <PlayerStatsContainer style={props}>
-            <PlayerStats
-              key={index}
-              videos={item.videos}
-              stats={item.topStats.statsFormatted}
-              name={item.name}
-              showVideo={showVideo}
-            />
-          </PlayerStatsContainer>
-        )}
-      </Trail>
+      {sortedStatsWithVideo.length > 0 ? (
+        <Trail
+          native
+          items={sortedStatsWithVideo}
+          from={{
+            opacity: 0,
+          }}
+          to={{
+            opacity: 1,
+          }}
+          keys={item => item.name}
+        >
+          {(item, index) => props => (
+            <PlayerStatsContainer style={props}>
+              <PlayerStats
+                key={index}
+                videos={item.videos}
+                stats={item.topStats.statsFormatted}
+                name={item.name}
+                showVideo={showVideo}
+              />
+            </PlayerStatsContainer>
+          )}
+        </Trail>
+      ) : (
+        <div>nothing</div>
+      )}
     </PlayerStatsWrapper>
   );
 };
