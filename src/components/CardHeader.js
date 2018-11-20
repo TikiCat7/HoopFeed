@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components/macro';
+import styled, { css, keyframes } from 'styled-components/macro';
 
 const CardHeaderWrapper = styled.div`
   min-height: 16px;
@@ -18,16 +18,32 @@ const HeaderItem = styled.div`
   flex-direction: column;
 `;
 
+const rotate = keyframes`
+    0% { transform: scale(1); }
+    30% { transform: scale(1.05); }
+    40% { transform: scale(1.1); }
+    50% { transform: scale(1.15); }
+    60% { transform: scale(1.1); }
+    70% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+`;
+
 const LiveIndicator = styled.span`
   text-transform: uppercase;
   color: #d0021b;
   font-size: 10px;
   font-weight: 800;
   margin-left: 10px;
+  background-color: #fc3636;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px 1px #ee2a2aa3;
+  animation: ${rotate} 3s ease-in-out infinite;
 `;
 
 const HighLights = styled.div`
-  margin-left: -28px;
+  margin-left: -25px;
   border-width: 1px;
   border-style: solid;
   border-color: #7af1ba;
@@ -39,7 +55,7 @@ const HighLights = styled.div`
   font-size: 8px;
   color: #7af1ba;
   text-align: center;
-  line-height: 1.5;
+  line-height: 1.4em;
   transition: transform 0.4s ease-out;
   ${props =>
     props.cardOpen &&
@@ -48,12 +64,10 @@ const HighLights = styled.div`
     `};
 `;
 
-const CardHeader = ({ finished, highlights, cardOpen }) => {
+const CardHeader = ({ live, highlights, cardOpen }) => {
   return (
     <CardHeaderWrapper>
-      <HeaderItem>
-        {!finished && <LiveIndicator>Live</LiveIndicator>}
-      </HeaderItem>
+      <HeaderItem>{live && <LiveIndicator />}</HeaderItem>
       <HeaderItem>
         {highlights && <HighLights cardOpen={cardOpen}>Highlights</HighLights>}
       </HeaderItem>

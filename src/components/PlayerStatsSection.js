@@ -9,6 +9,10 @@ const PlayerStatsContainer = styled(animated.div)``;
 const PlayerStatsWrapper = styled.div`
   overflow: scroll;
   max-height: 300px;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
 `;
 
 const PlayerStatsSection = ({ stats, showVideo, videos }) => {
@@ -21,11 +25,9 @@ const PlayerStatsSection = ({ stats, showVideo, videos }) => {
         items={sortedStatsWithVideo}
         from={{
           opacity: 0,
-          transform: 'translateY(-20px)',
         }}
         to={{
           opacity: 1,
-          transform: 'translateY(0px)',
         }}
         keys={item => item.name}
       >

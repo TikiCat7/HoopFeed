@@ -59,7 +59,6 @@ const Card = ({
   matchStats = [],
   youtubevideos = [],
 }) => {
-  const finished = statusNum === 3;
   let [cardOpen, toggleCardOpen] = useState(false);
   let [homeSelected, toggleDivider] = useState(true);
   const onCardClick = () => {
@@ -125,18 +124,18 @@ const Card = ({
     } else if (isEndOfPeriod) {
       return `END OF Q${currentPeriod}`;
     } else if (statusNum === 1) {
-      return startTimeUTC;
+      return `${new Date(parseInt(startTimeUTC)).getHours()}:00`;
     } else if (gameClock === null) {
       return `END OF Q${currentPeriod}`;
     } else {
-      return `Q${currentPeriod} ${gameClock}`;
+      return `Q${currentPeriod} ${gameClock || '12:00'}`;
     }
   };
 
   return (
     <CardWrapper style={cardHeightStyle} onClick={onCardClick}>
       <CardHeader
-        finished={finished}
+        live={statusNum === 2}
         cardOpen={cardOpen}
         highlights={youtubevideos.length > 0}
       />

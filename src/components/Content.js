@@ -89,6 +89,7 @@ const Content = ({ client }) => {
                 )}
               </Trail>
               <Transition
+                native
                 items={showVideoOverlay}
                 from={{ opacity: 0, transform: 'translate3d(-50px,0,0)' }}
                 enter={{ opacity: 1, transform: 'translate3d(0px,0,0)' }}

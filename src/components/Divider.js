@@ -23,6 +23,7 @@ const Divider = ({ homeSelected, toggleDivider }) => {
   const [dividerStyle] = useSpring({
     left: homeSelected ? -82.5 : 82.5,
     from: { left: homeSelected ? -82.5 : 82.5 },
+    config: { mass: 1, tension: 450, friction: 80 },
   });
 
   return (
