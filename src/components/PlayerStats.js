@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
+
+import VideoContext from '../context/VideoContext';
+
+import VideoItem from './VideoItem';
 
 const PlayerStatWrapper = styled.div`
   display: flex;
@@ -45,17 +49,8 @@ const StatsRow = styled.div`
   margin-bottom: 10px;
 `;
 
-const VideoItem = styled.div`
-  margin-left: 10px;
-  background: ${props => `url(${props.src}) center no-repeat`};
-  width: 100px;
-  height: 60px;
-  background-size: 100px 80px;
-  border-radius: 5px;
-  box-shadow: 0 0 5px 1px #0000007a;
-`;
-
-const PlayerStats = ({ stats = {}, videos = [], name = '', showVideo }) => {
+const PlayerStats = ({ stats = {}, videos = [], name = '' }) => {
+  const { setVideoId, toggleVideoOverlay } = useContext(VideoContext);
   const renderStats = () => {
     return stats.map((stat, index) => {
       return (
@@ -69,18 +64,22 @@ const PlayerStats = ({ stats = {}, videos = [], name = '', showVideo }) => {
 
   const handleVideoClick = (event, id) => {
     event.stopPropagation();
-    showVideo(id);
+    setVideoId(id);
+    toggleVideoOverlay(true);
   };
 
   const renderVideos = () => {
     return videos.map((video, index) => {
-      return (
-        <VideoItem
-          onClick={event => handleVideoClick(event, video.videoId)}
-          key={index}
-          src={video.thumbnailUrlLarge}
-        />
-      );
+      if (index < 3) {
+        return (
+          <VideoItem
+            key={index}
+            video={video}
+            index={index}
+            handleClick={handleVideoClick}
+          />
+        );
+      }
     });
   };
 

@@ -15,7 +15,7 @@ const PlayerStatsWrapper = styled.div`
   }
 `;
 
-const PlayerStatsSection = ({ stats, showVideo, videos }) => {
+const PlayerStatsSection = ({ stats, videos }) => {
   let sortedStats = findTopStats(stats);
   let sortedStatsWithVideo = mergeVideosToStats(sortedStats, videos);
   return (
@@ -39,7 +39,6 @@ const PlayerStatsSection = ({ stats, showVideo, videos }) => {
                 videos={item.videos}
                 stats={item.topStats.statsFormatted}
                 name={item.name}
-                showVideo={showVideo}
               />
             </PlayerStatsContainer>
           )}

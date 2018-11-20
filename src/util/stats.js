@@ -7,7 +7,7 @@ const findTopStats = stats => {
 
 const formatStats = stats => {
   stats.map(stat => {
-    stat.statsFormatted = createStatLine(stat.statsJSON);
+    return (stat.statsFormatted = createStatLine(stat.statsJSON));
   });
   // only return stats for players that actually played
   return stats.filter(stat => stat.statsJSON.min !== 0);

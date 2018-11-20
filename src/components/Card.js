@@ -51,7 +51,6 @@ const Card = ({
   index,
   selectedIndex,
   onSelect,
-  showVideo,
   currentPeriod,
   gameClock,
   isHalfTime,
@@ -64,7 +63,7 @@ const Card = ({
   const onCardClick = () => {
     if (statusNum === 1) return;
     toggleCardOpen(!cardOpen);
-    onSelect(index);
+    onSelect(index, youtubevideos);
   };
 
   useEffect(
@@ -192,7 +191,6 @@ const Card = ({
           <PlayerStatsSection
             stats={sortMatchStats(matchStats, hTeamId)}
             videos={youtubevideos}
-            showVideo={showVideo}
           />
         )}
       {cardOpen &&
@@ -200,7 +198,6 @@ const Card = ({
           <PlayerStatsSection
             stats={sortMatchStats(matchStats, vTeamId)}
             videos={youtubevideos}
-            showVideo={showVideo}
           />
         )}
     </CardWrapper>

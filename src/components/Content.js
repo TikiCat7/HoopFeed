@@ -43,24 +43,20 @@ const Content = ({ client }) => {
   const { selectedIndex, setIndex, matchDate } = useContext(AppContext);
   const {
     selectedVideo,
-    setVideoId,
     showVideoOverlay,
     toggleVideoOverlay,
     videoPlaying,
     toggleVideoPlay,
+    setSelectedMatchVideos,
+    selectedMatchVideos,
   } = useContext(VideoContext);
-
-  const showVideo = id => {
-    setVideoId(id);
-    toggleVideoOverlay(true);
-  };
-
   const hideVideo = () => {
     toggleVideoOverlay(false);
   };
 
-  const onSelect = index => {
+  const onSelect = (index, youtubevideos = []) => {
     setIndex(index);
+    setSelectedMatchVideos(youtubevideos);
   };
   return (
     <Query
@@ -100,7 +96,6 @@ const Content = ({ client }) => {
                     index={index}
                     selectedIndex={selectedIndex}
                     onSelect={onSelect}
-                    showVideo={showVideo}
                   />
                 </CardContainer>
               )}
@@ -117,11 +112,12 @@ const Content = ({ client }) => {
                 (props => (
                   <VideoOverlay
                     videoId={selectedVideo}
-                    changeVideo={showVideo}
+                    showVideoOverlay={showVideoOverlay}
                     hideVideo={hideVideo}
                     videoPlaying={videoPlaying}
                     toggleVideoPlay={toggleVideoPlay}
                     style={props}
+                    relatedVideos={selectedMatchVideos}
                   />
                 ))
               }
