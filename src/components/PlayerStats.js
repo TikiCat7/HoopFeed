@@ -60,7 +60,7 @@ const StatType = styled.div`
 const VideoRow = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;;
+  justify-content: space-evenly;
   width: 100%;
   padding-top: 10px;
   background-color: #80808014;
