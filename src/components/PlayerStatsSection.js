@@ -38,7 +38,8 @@ const PlayerStatsSection = ({ stats, videos }) => {
                 key={index}
                 videos={item.videos}
                 stats={item.topStats.statsFormatted}
-                name={item.name}
+                firstName={item.firstName}
+                lastName={item.lastName}
               />
             </PlayerStatsContainer>
           )}

@@ -65,7 +65,6 @@ const HighLights = styled.div`
 `;
 
 const CardHeader = ({ statusNum, highlights, cardOpen }) => {
-  console.log(statusNum);
   return (
     <CardHeaderWrapper statusNum={statusNum}>
       <HeaderItem>{statusNum === 2 && <LiveIndicator />}</HeaderItem>

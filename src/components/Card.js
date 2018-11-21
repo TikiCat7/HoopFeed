@@ -125,6 +125,12 @@ const Card = ({
       return `END OF Q${currentPeriod}`;
     } else if (statusNum === 1) {
       return `${new Date(parseInt(startTimeUTC)).getHours()}:00`;
+      // sometimes nba api is slow to update a match has finished, leaving statusNum at 2 and gameClock null X_X
+    } else if (gameClock === null && statusNum === 2 && currentPeriod === 4) {
+      return `FINAL`;
+      // when quarter is just beginning, game clock is null
+    } else if (gameClock === null && statusNum === 2) {
+      return `Q${currentPeriod} 12:00}`;
     } else if (gameClock === null) {
       return `END OF Q${currentPeriod}`;
     } else {

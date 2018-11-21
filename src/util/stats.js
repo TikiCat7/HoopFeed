@@ -18,8 +18,21 @@ const createStatLine = stat => {
   finalStat.push({ type: 'PTS', value: stat.p });
   finalStat.push({ type: 'AST', value: stat.a });
   finalStat.push({ type: 'REB', value: stat.or + stat.dr });
-  if (stat.b > 0) finalStat.push({ type: 'BLK', value: stat.b });
-  if (stat.min > 0) finalStat.push({ type: 'MIN', value: stat.min });
+  finalStat.push({ type: 'BLK', value: stat.b });
+  finalStat.push({ type: 'MIN', value: stat.min });
+  finalStat.push({ type: 'STL', value: stat.s });
+  finalStat.push({ type: 'FGM', value: stat.fgm });
+  finalStat.push({ type: 'FGA', value: stat.fga });
+  finalStat.push({
+    type: 'FG%',
+    value: stat.fga === 0 ? 0 : ((stat.fgm / stat.fga) * 100).toFixed(0),
+  });
+  finalStat.push({ type: '3PM', value: stat.tm });
+  finalStat.push({ type: '3PA', value: stat.ta });
+  finalStat.push({
+    type: '3P%',
+    value: stat.ta === 0 ? 0 : ((stat.tm / stat.ta) * 100).toFixed(0),
+  });
   return finalStat;
 };
 
@@ -34,6 +47,8 @@ const mergeVideosToStats = (stats, videos) => {
       topStats: stat,
       videos: filterByVideoByPlayer(videos, stat.playerIdFull),
       name: stat.player.name,
+      firstName: stat.player.firstName,
+      lastName: stat.player.lastName,
     };
   });
 };

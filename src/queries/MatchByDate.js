@@ -36,6 +36,8 @@ const MatchByDateQuery = gql`
         player {
           name
           teamId
+          firstName
+          lastName
         }
       }
       youtubevideos {

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const VideoItemWrapper = styled.div`
-  margin-left: 10px;
   background: ${props => `url(${props.src}) center no-repeat`};
   width: 100px;
   height: 60px;
