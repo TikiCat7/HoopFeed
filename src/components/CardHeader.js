@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components/macro';
 
 const CardHeaderWrapper = styled.div`
   min-height: 16px;
-  padding-top: ${props => (props.statusNum !== 1 ? '10px' : '30px')};
+  padding-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,6 +65,7 @@ const HighLights = styled.div`
 `;
 
 const CardHeader = ({ statusNum, highlights, cardOpen }) => {
+  console.log(statusNum);
   return (
     <CardHeaderWrapper statusNum={statusNum}>
       <HeaderItem>{statusNum === 2 && <LiveIndicator />}</HeaderItem>
