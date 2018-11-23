@@ -69,6 +69,13 @@ const Caret = styled.div`
   font-size: 12px;
   padding-right: 10px;
   padding-left: 10px;
+  transition: transform 0.3s ease-in-out;
+  ${props =>
+    props.cardOpen &&
+    css`
+      transform: rotate(180deg);
+    `};
+
   &::after {
     content: '▼';
   }
@@ -81,7 +88,7 @@ const CardHeader = ({ statusNum, highlights, cardOpen }) => {
       <HeaderItem>
         {false && <HighLights cardOpen={cardOpen}>Highlights</HighLights>}
       </HeaderItem>
-      {statusNum !== 1 && <Caret />}
+      {statusNum !== 1 && <Caret cardOpen={cardOpen} />}
     </CardHeaderWrapper>
   );
 };
