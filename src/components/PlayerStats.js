@@ -62,7 +62,6 @@ const VideoRow = styled.div`
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  padding-top: 10px;
   background-color: #80808014;
   padding-bottom: 10px;
 `;

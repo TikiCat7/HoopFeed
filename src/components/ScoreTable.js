@@ -23,7 +23,7 @@ const Divider = styled.div`
 `;
 
 const Score = styled.span`
-  font-size: 8px;
+  font-size: 10px;
   color: #848181;
 `;
 

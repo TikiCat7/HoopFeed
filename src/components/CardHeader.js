@@ -18,7 +18,7 @@ const HeaderItem = styled.div`
   flex-direction: column;
 `;
 
-const rotate = keyframes`
+const pulse = keyframes`
     0% { transform: scale(1); }
     30% { transform: scale(1.05); }
     40% { transform: scale(1.1); }
@@ -39,7 +39,7 @@ const LiveIndicator = styled.span`
   height: 10px;
   border-radius: 50%;
   box-shadow: 0 0 5px 1px #ee2a2aa3;
-  animation: ${rotate} 3s ease-in-out infinite;
+  animation: ${pulse} 3s ease-in-out infinite;
 `;
 
 const HighLights = styled.div`
@@ -64,13 +64,24 @@ const HighLights = styled.div`
     `};
 `;
 
+const Caret = styled.div`
+  color: white;
+  font-size: 12px;
+  padding-right: 10px;
+  padding-left: 10px;
+  &::after {
+    content: '▼';
+  }
+`;
+
 const CardHeader = ({ statusNum, highlights, cardOpen }) => {
   return (
     <CardHeaderWrapper statusNum={statusNum}>
       <HeaderItem>{statusNum === 2 && <LiveIndicator />}</HeaderItem>
       <HeaderItem>
-        {highlights && <HighLights cardOpen={cardOpen}>Highlights</HighLights>}
+        {false && <HighLights cardOpen={cardOpen}>Highlights</HighLights>}
       </HeaderItem>
+      {statusNum !== 1 && <Caret />}
     </CardHeaderWrapper>
   );
 };

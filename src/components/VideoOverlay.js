@@ -8,7 +8,7 @@ import VideoItem from './VideoItem';
 import '../index.css';
 
 const VideoOverlayWrapper = styled(animated.div)`
-  position: ${props => (props.show ? 'inherit' : 'absolute')};
+  position: ${props => (props.show ? 'absolute' : 'absolute')};
   width: 100%;
   height: 100%;
   background-color: black;

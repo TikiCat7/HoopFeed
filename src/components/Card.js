@@ -32,7 +32,6 @@ const CardCenter = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 18px;
 `;
 
 const Card = ({
@@ -81,7 +80,11 @@ const Card = ({
   };
 
   const sortMatchStats = (matchstats, teamId) => {
-    return matchStats.filter(stat => stat.player.teamId === teamId);
+    return matchStats.filter(stat => {
+      if (stat.player) {
+        return stat.player.teamId === teamId;
+      }
+    });
   };
 
   const [cardHeightStyle] = useSpring({
