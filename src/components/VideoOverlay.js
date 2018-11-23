@@ -135,7 +135,6 @@ const VideoOverlay = ({
   };
 
   const renderRelatedVideos = () => {
-    console.log(relatedVideos);
     return relatedVideos.map((video, index) => {
       return (
         <VideoItemRow
