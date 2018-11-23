@@ -44,6 +44,13 @@ const VideoItemRow = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 5px;
+  background-color: ${props => (props.selected ? '#222323' : '#151414')};
+  &:first-child {
+    margin-top: 0px;
+  }
+  &:last-child {
+    margin-bottom: 0px;
+  }
 `;
 
 const VideoSuggestion = styled(animated.div)`
@@ -53,7 +60,6 @@ const VideoSuggestion = styled(animated.div)`
   background-color: #151414;
   opacity: 1;
   overflow: scroll;
-  margin-top: 50px;
 `;
 
 const VideoTitle = styled.div`
@@ -77,6 +83,14 @@ const VideoLoading = styled.div`
   margin-left: -40px;
   margin-top: -15px;
   visibility: ${props => (!props.visible ? 'visible' : 'hidden')};
+`;
+
+const VideoSuggestionTitle = styled.div`
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px;
 `;
 
 const VideoOverlay = ({
@@ -121,21 +135,22 @@ const VideoOverlay = ({
   };
 
   const renderRelatedVideos = () => {
+    console.log(relatedVideos);
     return relatedVideos.map((video, index) => {
-      if (selectedVideo !== video.videoId) {
-        return (
-          <VideoItemRow key={index}>
-            <VideoItem
-              video={video}
-              index={index}
-              handleClick={() => setVideoId(video.videoId)}
-            />
-            <VideoTitle>{video.title.substring(0, 100)}</VideoTitle>
-          </VideoItemRow>
-        );
-      } else {
-        return null;
-      }
+      return (
+        <VideoItemRow
+          key={index}
+          selected={selectedVideo === video.videoId}
+          onClick={() => setVideoId(video.videoId)}
+        >
+          <VideoItem
+            video={video}
+            index={index}
+            handleClick={() => setVideoId(video.videoId)}
+          />
+          <VideoTitle>{video.title.substring(0, 100)}</VideoTitle>
+        </VideoItemRow>
+      );
     });
   };
 
@@ -155,7 +170,10 @@ const VideoOverlay = ({
             <VideoLoading visible={playBackReady}>LOADING</VideoLoading>
           </VideoContent>
           {relatedVideos.length > 0 && (
-            <VideoSuggestion>{renderRelatedVideos()}</VideoSuggestion>
+            <React.Fragment>
+              <VideoSuggestionTitle>Related Videos</VideoSuggestionTitle>
+              <VideoSuggestion>{renderRelatedVideos()}</VideoSuggestion>
+            </React.Fragment>
           )}
           <VideoCloseButton onClick={hideVideo}>CLOSE</VideoCloseButton>
         </Content>
