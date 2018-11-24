@@ -7,6 +7,7 @@ import TeamInfo from './TeamInfo';
 import GameTime from './GameTime';
 import ScoreTable from './ScoreTable';
 import Divider from './Divider';
+import MatchHighlightsRail from './MatchHighlightsRail';
 import PlayerStatsSection from './PlayerStatsSection';
 
 const CardWrapper = styled(animated.div)`
@@ -17,6 +18,8 @@ const CardWrapper = styled(animated.div)`
   border-radius: 10px;
   margin-bottom: 20px;
   width: 330px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const CardContent = styled.div`
@@ -61,6 +64,7 @@ const Card = ({
   let [homeSelected, toggleDivider] = useState(true);
   const onCardClick = () => {
     if (statusNum === 1) return;
+    if (!cardOpen) toggleDivider(true);
     toggleCardOpen(!cardOpen);
     onSelect(index, youtubevideos);
   };
@@ -87,9 +91,17 @@ const Card = ({
     });
   };
 
+  const renderMatchVideos = () => {
+    return (
+      <MatchHighlightsRail
+        videos={youtubevideos.filter(video => video.player.length === 0)}
+      />
+    );
+  };
+
   const [cardHeightStyle] = useSpring({
-    height: cardOpen ? 420 : 140,
-    from: { height: 140 },
+    height: cardOpen ? '420px' : '140px',
+    from: { height: '140px' },
     config: config.stiff,
   });
 
@@ -127,7 +139,10 @@ const Card = ({
     } else if (isEndOfPeriod) {
       return `END OF Q${currentPeriod}`;
     } else if (statusNum === 1) {
-      return `${new Date(parseInt(startTimeUTC)).getHours()}:00`;
+      let gameTimeDate = new Date(parseInt(startTimeUTC));
+      let hours = gameTimeDate.getHours();
+      let minutes = gameTimeDate.getMinutes();
+      return `${hours}:${minutes === 0 ? '00' : minutes}`;
       // sometimes nba api is slow to update a match has finished, leaving statusNum at 2 and gameClock null X_X
     } else if (gameClock === null && statusNum === 2 && currentPeriod === 4) {
       return `FINAL`;
@@ -142,12 +157,12 @@ const Card = ({
   };
 
   return (
-    <CardWrapper style={cardHeightStyle} onClick={onCardClick}>
-      <CardHeader
-        statusNum={statusNum}
-        cardOpen={cardOpen}
-        highlights={youtubevideos.length > 0}
-      />
+    <CardWrapper
+      style={cardHeightStyle}
+      onClick={onCardClick}
+      cardOpen={cardOpen}
+    >
+      <CardHeader statusNum={statusNum} cardOpen={cardOpen} />
       <CardContent>
         <TeamInfo
           home
@@ -190,25 +205,28 @@ const Card = ({
         />
       </CardContent>
       {cardOpen && (
-        <Divider
-          homeSelected={homeSelected}
-          toggleDivider={handleToggleOnClick}
-        />
+        <React.Fragment>
+          {youtubevideos.length > 0 &&
+            youtubevideos.find(video => video.player.length === 0) &&
+            renderMatchVideos()}
+          <Divider
+            homeSelected={homeSelected}
+            toggleDivider={handleToggleOnClick}
+          />
+          {homeSelected && (
+            <PlayerStatsSection
+              stats={sortMatchStats(matchStats, hTeamId)}
+              videos={youtubevideos}
+            />
+          )}
+          {!homeSelected && (
+            <PlayerStatsSection
+              stats={sortMatchStats(matchStats, vTeamId)}
+              videos={youtubevideos}
+            />
+          )}
+        </React.Fragment>
       )}
-      {cardOpen &&
-        homeSelected && (
-          <PlayerStatsSection
-            stats={sortMatchStats(matchStats, hTeamId)}
-            videos={youtubevideos}
-          />
-        )}
-      {cardOpen &&
-        !homeSelected && (
-          <PlayerStatsSection
-            stats={sortMatchStats(matchStats, vTeamId)}
-            videos={youtubevideos}
-          />
-        )}
     </CardWrapper>
   );
 };

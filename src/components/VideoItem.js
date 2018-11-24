@@ -8,6 +8,7 @@ const VideoItemWrapper = styled.div`
   background-size: 100px 80px;
   border-radius: 5px;
   box-shadow: 0 0 5px 1px #0000007a;
+  flex: 0 0 auto;
 `;
 
 const VideoItem = ({ video, index, handleClick }) => {

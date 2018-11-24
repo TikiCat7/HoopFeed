@@ -8,7 +8,9 @@ const PlayerStatsContainer = styled(animated.div)``;
 
 const PlayerStatsWrapper = styled.div`
   overflow: scroll;
-  max-height: 307px;
+  overflow-x: hidden;
+  flex: 1;
+  border-radius: 10px;
   ::-webkit-srollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */

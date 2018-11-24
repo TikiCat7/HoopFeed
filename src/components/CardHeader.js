@@ -77,17 +77,17 @@ const Caret = styled.div`
     `};
 
   &::after {
-    content: '▼';
+    content: '∨';
+    font-family: 'SF-Pro-Heavy';
+    font-weight: 800;
+    font-size: 13px;
   }
 `;
 
-const CardHeader = ({ statusNum, highlights, cardOpen }) => {
+const CardHeader = ({ statusNum, cardOpen }) => {
   return (
     <CardHeaderWrapper statusNum={statusNum}>
       <HeaderItem>{statusNum === 2 && <LiveIndicator />}</HeaderItem>
-      <HeaderItem>
-        {false && <HighLights cardOpen={cardOpen}>Highlights</HighLights>}
-      </HeaderItem>
       {statusNum !== 1 && <Caret cardOpen={cardOpen} />}
     </CardHeaderWrapper>
   );

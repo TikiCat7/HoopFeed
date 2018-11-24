@@ -53,8 +53,8 @@ const StatType = styled.div`
   justify-content: flex-end;
   align-items: center;
   font-variant-numeric: tabular-nums;
-  font-size: 10;
-  width: 25;
+  font-size: 10px;
+  width: 25px;
 `;
 
 const VideoRow = styled.div`

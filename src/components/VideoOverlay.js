@@ -8,7 +8,8 @@ import VideoItem from './VideoItem';
 import '../index.css';
 
 const VideoOverlayWrapper = styled(animated.div)`
-  position: ${props => (props.show ? 'absolute' : 'absolute')};
+  position: absolute;
+  opacity: 0.5;
   width: 100%;
   height: 100%;
   background-color: black;
@@ -174,7 +175,7 @@ const VideoOverlay = ({
               <VideoSuggestion>{renderRelatedVideos()}</VideoSuggestion>
             </React.Fragment>
           )}
-          <VideoCloseButton onClick={hideVideo}>CLOSE</VideoCloseButton>
+          <VideoCloseButton onClick={hideVideo}>BACK</VideoCloseButton>
         </Content>
       </VideoOverlayWrapper>
     </React.Fragment>

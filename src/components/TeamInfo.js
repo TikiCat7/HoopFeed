@@ -8,7 +8,9 @@ const TeamInfoWrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 110px;
+  max-width: 50px;
+  margin-left: ${props => (!props.home ? '30px' : '0px')};
+  margin-right: ${props => (props.home ? '30px' : '0px')};
 `;
 
 const TeamName = styled(animated.div)`
@@ -47,7 +49,7 @@ const TeamInfo = ({
     cardOpen && event.stopPropagation();
   };
   return (
-    <TeamInfoWrapper onClick={handleClick}>
+    <TeamInfoWrapper onClick={handleClick} home={home}>
       <TeamName style={teamNameStyle}>{teamName}</TeamName>
       <TeamRecord>{record}</TeamRecord>
       <Score style={scoreStyle}>{score}</Score>
