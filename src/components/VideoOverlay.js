@@ -156,7 +156,7 @@ const VideoOverlay = ({
 
   return (
     <React.Fragment>
-      <VideoOverlayWrapper show={showVideoOverlay} style={style}>
+      <VideoOverlayWrapper style={style}>
         <Content>
           <VideoContent videoPlaying={videoPlaying}>
             <YouTube

@@ -9,7 +9,7 @@ const GameTimeWrapper = styled.div`
   justify-content: center;
   text-transform: uppercase;
   font-size: 12px;
-  color: white;
+  color: #7af1ba;
   font-weight: 800;
   transition: transform 0.3s ease-in-out;
 `;

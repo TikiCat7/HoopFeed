@@ -87,7 +87,7 @@ const Card = ({
     return matchStats.filter(stat => {
       if (stat.player) {
         return stat.player.teamId === teamId;
-      }
+      } else return null;
     });
   };
 
@@ -157,11 +157,7 @@ const Card = ({
   };
 
   return (
-    <CardWrapper
-      style={cardHeightStyle}
-      onClick={onCardClick}
-      cardOpen={cardOpen}
-    >
+    <CardWrapper style={cardHeightStyle} onClick={onCardClick}>
       <CardHeader statusNum={statusNum} cardOpen={cardOpen} />
       <CardContent>
         <TeamInfo
