@@ -100,7 +100,7 @@ const Card = ({
   };
 
   const [cardHeightStyle] = useSpring({
-    height: cardOpen ? '420px' : '140px',
+    height: cardOpen ? '600px' : '140px',
     from: { height: '140px' },
     config: config.stiff,
   });
@@ -206,13 +206,13 @@ const Card = ({
       </CardContent>
       {cardOpen && (
         <React.Fragment>
-          {youtubevideos.length > 0 &&
-            youtubevideos.find(video => video.player.length === 0) &&
-            renderMatchVideos()}
           <Divider
             homeSelected={homeSelected}
             toggleDivider={handleToggleOnClick}
           />
+          {youtubevideos.length > 0 &&
+            youtubevideos.find(video => video.player.length === 0) &&
+            renderMatchVideos()}
           {homeSelected && (
             <PlayerStatsSection
               stats={sortMatchStats(matchStats, hTeamId)}

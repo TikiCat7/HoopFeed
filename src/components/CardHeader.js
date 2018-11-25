@@ -80,7 +80,7 @@ const Caret = styled.div`
     content: '∨';
     font-family: 'SF-Pro-Heavy';
     font-weight: 800;
-    font-size: 13px;
+    font-size: 10px;
   }
 `;
 
