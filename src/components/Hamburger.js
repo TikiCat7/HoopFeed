@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 const Menu = styled.div`
   color: white;
   cursor: pointer;
-  margin: 10px;
+  margin-right: 10px;
 `;
 
 const Line = styled.span`

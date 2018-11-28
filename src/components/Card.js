@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import styled from 'styled-components/macro';
 
@@ -67,7 +67,18 @@ const Card = ({
     if (!cardOpen) toggleDivider(true);
     toggleCardOpen(!cardOpen);
     onSelect(index, youtubevideos);
+    setTimeout(() => {
+      if (!cardOpen) {
+        El.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'nearest',
+        });
+      }
+    }, 600);
   };
+
+  const El = useRef(null);
 
   useEffect(
     () => {
@@ -157,7 +168,7 @@ const Card = ({
   };
 
   return (
-    <CardWrapper style={cardHeightStyle} onClick={onCardClick}>
+    <CardWrapper style={cardHeightStyle} onClick={onCardClick} ref={El}>
       <CardHeader statusNum={statusNum} cardOpen={cardOpen} />
       <CardContent>
         <TeamInfo

@@ -42,27 +42,27 @@ const LiveIndicator = styled.span`
   animation: ${pulse} 3s ease-in-out infinite;
 `;
 
-const HighLights = styled.div`
-  margin-left: -25px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #7af1ba;
-  min-width: 55px;
-  height: 10px;
-  border-radius: 5px;
-  font-family: 'Fugaz one', cursive;
-  text-transform: uppercase;
-  font-size: 8px;
-  color: #7af1ba;
-  text-align: center;
-  line-height: 1.4em;
-  transition: transform 0.4s ease-out;
-  ${props =>
-    props.cardOpen &&
-    css`
-      transform: translateY(16px) translateX(-3px);
-    `};
-`;
+// const HighLights = styled.div`
+//   margin-left: -25px;
+//   border-width: 1px;
+//   border-style: solid;
+//   border-color: #7af1ba;
+//   min-width: 55px;
+//   height: 10px;
+//   border-radius: 5px;
+//   font-family: 'Fugaz one', cursive;
+//   text-transform: uppercase;
+//   font-size: 8px;
+//   color: #7af1ba;
+//   text-align: center;
+//   line-height: 1.4em;
+//   transition: transform 0.4s ease-out;
+//   ${props =>
+//     props.cardOpen &&
+//     css`
+//       transform: translateY(16px) translateX(-3px);
+//     `};
+// `;
 
 const Caret = styled.div`
   color: white;

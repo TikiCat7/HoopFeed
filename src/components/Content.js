@@ -11,6 +11,7 @@ import VideoContext from '../context/VideoContext';
 import Card from './Card';
 import VideoOverlay from './VideoOverlay';
 import LoadingIndicator from './LoadingIndicator';
+import AboveContentButtons from './AboveContentButtons';
 
 const ScrollableArea = styled(animated.div)`
   height: 100%;
@@ -19,7 +20,7 @@ const ScrollableArea = styled(animated.div)`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  overflow: scroll;
+  overflow: hidden;
 `;
 
 const NoData = styled.div`
@@ -75,6 +76,7 @@ const Content = ({ client }) => {
         }
         return (
           <ScrollableArea>
+            <AboveContentButtons />
             <Trail
               native
               items={data.matchByDate}

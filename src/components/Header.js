@@ -6,7 +6,7 @@ import AppContext from '../context/AppContext';
 import Hamburger from './Hamburger';
 import { ReactComponent as Ball } from '../images/ball.svg';
 
-let HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div`
   user-select: none;
   background-color: black;
   display: flex;
@@ -18,36 +18,53 @@ let HeaderWrapper = styled.div`
   z-index: 1;
 `;
 
-let LogoWrapper = styled.a`
+const LogoWrapper = styled.a`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
 `;
 
-let Title = styled.span`
+const Title = styled.span`
   color: white;
   font-family: 'Fugaz One', cursive;
   font-weight: 800;
   font-size: 20px;
 `;
 
-let BallWrapper = styled.div`
+const SubTitle = styled.span`
+  color: white;
+  font-family: 'Fugaz One', cursive;
+  font-weight: 800;
+  font-size: 8px;
+  margin-left: 3px;
+`;
+
+const BallWrapper = styled.div`
   margin: 10px;
 `;
 
-let Arrow = styled.p`
+const Arrow = styled.span`
   color: white;
   font-family: 'Fugaz One', cursive;
   font-weight: 800;
   font-size: 20px;
+  vertical-align: middle;
 `;
 
-let DateStyle = styled.p`
+const DateStyle = styled.span`
   color: white;
   font-family: 'Fugaz One', cursive;
   font-weight: 800;
   font-size: 14px;
+  margin-left: 10px;
+  margin-right: 10px;
+`;
+
+const Calednarwrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Header = () => {
@@ -63,11 +80,16 @@ const Header = () => {
         <BallWrapper>
           <Ball />
         </BallWrapper>
-        <Title>HOOPFEED</Title>
+        <div>
+          <Title>HOOPFEED</Title>
+          <SubTitle>BETA</SubTitle>
+        </div>
       </LogoWrapper>
-      <Arrow onClick={() => setMatchDate(adjustedDate(1))}>←</Arrow>
-      <DateStyle>{splitDate(formatDate(matchDate))}</DateStyle>
-      <Arrow onClick={() => setMatchDate(adjustedDate(-1))}>→</Arrow>
+      <Calednarwrapper>
+        <Arrow onClick={() => setMatchDate(adjustedDate(1))}>←</Arrow>
+        <DateStyle>{splitDate(formatDate(matchDate))}</DateStyle>
+        <Arrow onClick={() => setMatchDate(adjustedDate(-1))}>→</Arrow>
+      </Calednarwrapper>
       <Hamburger />
     </HeaderWrapper>
   );
