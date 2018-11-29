@@ -59,6 +59,7 @@ const Card = ({
   isEndofPeriod,
   matchStats = [],
   youtubevideos = [],
+  showVideoOverlay,
 }) => {
   let [cardOpen, toggleCardOpen] = useState(false);
   let [homeSelected, toggleDivider] = useState(true);
@@ -77,6 +78,19 @@ const Card = ({
       }
     }, 600);
   };
+
+  useEffect(
+    () => {
+      if (!showVideoOverlay && cardOpen) {
+        El.current.scrollIntoView({
+          behavior: 'instant',
+          block: 'center',
+          inline: 'nearest',
+        });
+      }
+    },
+    [showVideoOverlay],
+  );
 
   const El = useRef(null);
 

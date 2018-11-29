@@ -98,6 +98,7 @@ const Content = ({ client }) => {
                     index={index}
                     selectedIndex={selectedIndex}
                     onSelect={onSelect}
+                    showVideoOverlay={showVideoOverlay}
                   />
                 </CardContainer>
               )}
