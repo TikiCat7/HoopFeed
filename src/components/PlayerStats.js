@@ -116,7 +116,7 @@ const PlayerStats = ({ stats = {}, videos = [], firstName, lastName }) => {
 
   return (
     <PlayerStatWrapper>
-      <StatsRow style={{ justifyContent: 'flex-start' }}>
+      <StatsRow>
         <PlayerName>{`${firstName.substring(0, 1)}. ${lastName}`}</PlayerName>
       </StatsRow>
       <StatsRow>

@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.div`
-  background-color: #1e1e1e;
+  background-color: ${props => (props.on ? '#5edea4' : '#1e1e1e')};
   width: 130px;
   height: 37px;
   text-transform: uppercase;
@@ -28,10 +28,15 @@ const Button = styled.div`
   }
 `;
 
-const AboveContentButtons = () => {
+const AboveContentButtons = ({ togglePerformerList, showTopPerformers }) => {
   return (
     <Wrapper>
-      <Button>Top Performances</Button>
+      <Button
+        on={showTopPerformers ? 1 : 0}
+        onClick={() => togglePerformerList()}
+      >
+        Top Performances
+      </Button>
       <Button>r/nba clips</Button>
     </Wrapper>
   );

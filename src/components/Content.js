@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components/macro';
 import { Trail, animated, Transition } from 'react-spring';
 import { Query } from 'react-apollo';
@@ -12,6 +12,8 @@ import Card from './Card';
 import VideoOverlay from './VideoOverlay';
 import LoadingIndicator from './LoadingIndicator';
 import AboveContentButtons from './AboveContentButtons';
+import TopPerformanceList from './TopPerformanceList';
+import { findTopPerformers } from '../util/stats';
 
 const ScrollableArea = styled(animated.div)`
   height: 100%;
@@ -55,10 +57,17 @@ const Content = ({ client }) => {
     toggleVideoOverlay(false);
   };
 
+  const [showTopPerformers, togglePerformersList] = useState(false);
+
   const onSelect = (index, youtubevideos = []) => {
     setIndex(index);
     setSelectedMatchVideos(youtubevideos);
   };
+
+  const togglePerformerList = () => {
+    togglePerformersList(!showTopPerformers);
+  };
+
   return (
     <Query
       query={MatchByDateQuery}
@@ -76,7 +85,16 @@ const Content = ({ client }) => {
         }
         return (
           <ScrollableArea>
-            <AboveContentButtons />
+            <AboveContentButtons
+              togglePerformerList={togglePerformerList}
+              showTopPerformers={showTopPerformers}
+            />
+            {showTopPerformers && (
+              <TopPerformanceList
+                topPerformers={findTopPerformers(data.matchByDate)}
+              />
+            )}
+
             <Trail
               native
               items={data.matchByDate}
