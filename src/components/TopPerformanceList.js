@@ -153,7 +153,7 @@ const TopPerformanceList = ({ topPerformers }) => {
       return (
         <GridItem key={index}>
           <StatNumber
-            green={statToMakeGreen(stat.type) && stat.value > 10 ? 1 : 0}
+            green={statToMakeGreen(stat.type) && stat.value >= 10 ? 1 : 0}
           >
             {stat.value}
           </StatNumber>
