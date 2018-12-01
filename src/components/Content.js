@@ -61,11 +61,13 @@ const Content = ({ client }) => {
 
   const onSelect = (index, youtubevideos = []) => {
     setIndex(index);
+    togglePerformersList(false);
     setSelectedMatchVideos(youtubevideos);
   };
 
   const togglePerformerList = () => {
     togglePerformersList(!showTopPerformers);
+    setIndex(null);
   };
 
   return (

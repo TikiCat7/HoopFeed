@@ -35,7 +35,7 @@ const AboveContentButtons = ({ togglePerformerList, showTopPerformers }) => {
         on={showTopPerformers ? 1 : 0}
         onClick={() => togglePerformerList()}
       >
-        Top Performances
+        Top Performers
       </Button>
       <Button>r/nba clips</Button>
     </Wrapper>

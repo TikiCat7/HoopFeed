@@ -1,13 +1,9 @@
+import dayjs from 'dayjs';
+
 export const formatDate = (date, amount = 0) => {
-  let d = new Date(date),
-    month = '' + (d.getMonth() + 1),
-    day = '' + d.getDate() - amount,
-    year = d.getFullYear();
-
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-
-  return `${year}${month}${day}`;
+  return dayjs(date)
+    .subtract(amount, 'day')
+    .format('YYYYMMDD');
 };
 
 export const splitDate = date => {
