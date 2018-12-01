@@ -39,17 +39,17 @@ const formatStats = stats => {
 const checkStatType = stat => {
   let doubleDigitCount = 0;
   let fiveCount = 0;
-  if (stat.p > 10) doubleDigitCount++;
-  if (stat.a > 10) doubleDigitCount++;
-  if (stat.or + stat.dr > 10) doubleDigitCount++;
-  if (stat.b > 10) doubleDigitCount++;
-  if (stat.s > 10) doubleDigitCount++;
+  if (stat.p >= 10) doubleDigitCount++;
+  if (stat.a >= 10) doubleDigitCount++;
+  if (stat.or + stat.dr >= 10) doubleDigitCount++;
+  if (stat.b >= 10) doubleDigitCount++;
+  if (stat.s >= 10) doubleDigitCount++;
 
-  if (stat.p > 5) fiveCount++;
-  if (stat.a > 5) fiveCount++;
-  if (stat.or + stat.dr > 5) fiveCount++;
-  if (stat.b > 5) fiveCount++;
-  if (stat.s > 5) fiveCount++;
+  if (stat.p >= 5) fiveCount++;
+  if (stat.a >= 5) fiveCount++;
+  if (stat.or + stat.dr >= 5) fiveCount++;
+  if (stat.b >= 5) fiveCount++;
+  if (stat.s >= 5) fiveCount++;
 
   if (fiveCount >= 5) {
     return '5 x 5';
