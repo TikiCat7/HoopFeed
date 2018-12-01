@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useSpring, animated, config } from 'react-spring';
 import styled from 'styled-components/macro';
 
 import VideoContext from '../context/VideoContext';

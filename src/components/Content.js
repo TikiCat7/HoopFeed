@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import { Trail, animated, Transition } from 'react-spring';
 import { Query } from 'react-apollo';
@@ -43,7 +43,13 @@ const CardContainer = styled(animated.div)`
 `;
 
 const Content = ({ client }) => {
-  const { selectedIndex, setIndex, matchDate } = useContext(AppContext);
+  const {
+    selectedIndex,
+    setIndex,
+    matchDate,
+    togglePerformersList,
+    showTopPerformers,
+  } = useContext(AppContext);
   const {
     selectedVideo,
     showVideoOverlay,
@@ -56,8 +62,6 @@ const Content = ({ client }) => {
   const hideVideo = () => {
     toggleVideoOverlay(false);
   };
-
-  const [showTopPerformers, togglePerformersList] = useState(false);
 
   const onSelect = (index, youtubevideos = []) => {
     setIndex(index);

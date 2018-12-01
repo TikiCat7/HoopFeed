@@ -23,6 +23,7 @@ const App = () => {
   const [selectedIndex, setIndex] = useState(null);
   const [matchDate, setMatchDate] = useState(new Date());
   const [selectedMatchVideos, setSelectedMatchVideos] = useState([]);
+  const [showTopPerformers, togglePerformersList] = useState(false);
 
   return (
     <ApolloProvider client={client}>
@@ -32,6 +33,8 @@ const App = () => {
           setIndex,
           matchDate,
           setMatchDate,
+          showTopPerformers,
+          togglePerformersList,
         }}
       >
         <VideoContext.Provider

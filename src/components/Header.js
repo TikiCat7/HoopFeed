@@ -68,11 +68,17 @@ const Calednarwrapper = styled.div`
 `;
 
 const Header = () => {
-  const { matchDate, setMatchDate } = useContext(AppContext);
+  const { matchDate, setMatchDate, togglePerformersList } = useContext(
+    AppContext,
+  );
   const adjustedDate = direction => {
     return new Date(
       matchDate.setTime(matchDate.getTime() - 1 * direction * 86400000),
     );
+  };
+  const handleDateClick = () => {
+    togglePerformersList(false);
+    setMatchDate(adjustedDate(1));
   };
   return (
     <HeaderWrapper>
@@ -86,9 +92,9 @@ const Header = () => {
         </div>
       </LogoWrapper>
       <Calednarwrapper>
-        <Arrow onClick={() => setMatchDate(adjustedDate(1))}>←</Arrow>
+        <Arrow onClick={() => handleDateClick(1)}>←</Arrow>
         <DateStyle>{splitDate(formatDate(matchDate))}</DateStyle>
-        <Arrow onClick={() => setMatchDate(adjustedDate(-1))}>→</Arrow>
+        <Arrow onClick={() => handleDateClick(-1)}>→</Arrow>
       </Calednarwrapper>
       <Hamburger />
     </HeaderWrapper>
