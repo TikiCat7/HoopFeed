@@ -76,9 +76,9 @@ const Header = () => {
       matchDate.setTime(matchDate.getTime() - 1 * direction * 86400000),
     );
   };
-  const handleDateClick = () => {
+  const handleDateClick = amount => {
     togglePerformersList(false);
-    setMatchDate(adjustedDate(1));
+    setMatchDate(adjustedDate(amount));
   };
   return (
     <HeaderWrapper>
