@@ -61,6 +61,7 @@ const Content = ({ client }) => {
   } = useContext(VideoContext);
   const hideVideo = () => {
     toggleVideoOverlay(false);
+    togglePerformersList(true);
   };
 
   const onSelect = (index, youtubevideos = []) => {
@@ -100,6 +101,7 @@ const Content = ({ client }) => {
               <TopPerformanceList
                 topPerformers={findTopPerformers(data.matchByDate)}
                 showTopPerformers={showTopPerformers}
+                togglePerformersList={togglePerformersList}
               />
             )}
 

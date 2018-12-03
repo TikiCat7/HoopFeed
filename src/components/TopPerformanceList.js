@@ -123,7 +123,11 @@ const VideoRow = styled.div`
   padding-bottom: 10px;
 `;
 
-const TopPerformanceList = ({ topPerformers, showTopPerformers }) => {
+const TopPerformanceList = ({
+  topPerformers,
+  showTopPerformers,
+  togglePerformersList,
+}) => {
   const { setVideoId, toggleVideoOverlay } = useContext(VideoContext);
 
   const opponentTeam = player => {
@@ -148,6 +152,7 @@ const TopPerformanceList = ({ topPerformers, showTopPerformers }) => {
     event.stopPropagation();
     setVideoId(id);
     toggleVideoOverlay(true);
+    togglePerformersList(false);
   };
 
   const renderStats = stats => {
