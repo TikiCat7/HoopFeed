@@ -4,7 +4,12 @@ import PlayerStats from './PlayerStats';
 import { animated } from 'react-spring';
 import { findTopStats, mergeVideosToStats } from '../util/stats';
 
-const PlayerStatsContainer = styled(animated.div)``;
+const PlayerStatsContainer = styled(animated.div)`
+  -webkit-srollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
+`;
 
 const PlayerStatsWrapper = styled.div`
   -webkit-overflow-scrolling: touch;

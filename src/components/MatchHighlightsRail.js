@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import VideoContext from '../context/VideoContext';
 
@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   flex: 1;
   flex-direction: column;
   max-height: 100px;
+  overflow-x: hidden;
 `;
 
 const Title = styled.h1`
