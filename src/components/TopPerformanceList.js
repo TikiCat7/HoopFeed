@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
+import { animated, Transition } from 'react-spring';
 
 import VideoContext from '../context/VideoContext';
 import VideoItem from './VideoItem';
 
-const ListWrapper = styled.div`
+const ListWrapper = styled(animated.div)`
   width: 90%;
+  max-width: 330px;
 `;
 
 const ListItem = styled.div`
@@ -121,7 +123,7 @@ const VideoRow = styled.div`
   padding-bottom: 10px;
 `;
 
-const TopPerformanceList = ({ topPerformers }) => {
+const TopPerformanceList = ({ topPerformers, showTopPerformers }) => {
   const { setVideoId, toggleVideoOverlay } = useContext(VideoContext);
 
   const opponentTeam = player => {
@@ -209,7 +211,21 @@ const TopPerformanceList = ({ topPerformers }) => {
       );
     });
   };
-  return <ListWrapper>{renderTopPerformers()}</ListWrapper>;
+  return (
+    <Transition
+      native
+      items={showTopPerformers}
+      from={{ opacity: 0 }}
+      enter={{ opacity: 1 }}
+    >
+      {show =>
+        show &&
+        (props => (
+          <ListWrapper style={props}>{renderTopPerformers()}</ListWrapper>
+        ))
+      }
+    </Transition>
+  );
 };
 
 export default TopPerformanceList;

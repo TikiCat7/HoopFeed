@@ -13,7 +13,7 @@ const PlayerStatsWrapper = styled.div`
   flex: 1;
   border-bottom-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  ::-webkit-srollbar {
+  -webkit-srollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
   }

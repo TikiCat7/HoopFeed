@@ -68,15 +68,6 @@ const Card = ({
     if (!cardOpen) toggleDivider(true);
     toggleCardOpen(!cardOpen);
     onSelect(index, youtubevideos);
-    // setTimeout(() => {
-    //   if (!cardOpen) {
-    //     El.current.scrollIntoView({
-    //       behavior: 'smooth',
-    //       block: 'center',
-    //       inline: 'nearest',
-    //     });
-    //   }
-    // }, 600);
   };
 
   useEffect(

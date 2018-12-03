@@ -60,7 +60,12 @@ const VideoSuggestion = styled(animated.div)`
   max-height: 350px;
   background-color: #151414;
   opacity: 1;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-srollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
 `;
 
 const VideoTitle = styled.div`

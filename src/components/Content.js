@@ -72,6 +72,7 @@ const Content = ({ client }) => {
   const togglePerformerList = () => {
     togglePerformersList(!showTopPerformers);
     setIndex(null);
+    setSelectedMatchVideos([]);
   };
 
   return (
@@ -98,6 +99,7 @@ const Content = ({ client }) => {
             {showTopPerformers && (
               <TopPerformanceList
                 topPerformers={findTopPerformers(data.matchByDate)}
+                showTopPerformers={showTopPerformers}
               />
             )}
 
