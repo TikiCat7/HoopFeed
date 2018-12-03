@@ -35,8 +35,9 @@ const VideoRow = styled.div`
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
-  -webkit-scrollbar {
-    display: none;
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
   }
 
   &::after {

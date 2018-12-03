@@ -62,7 +62,7 @@ const VideoSuggestion = styled(animated.div)`
   opacity: 1;
   overflow-y: scroll;
   overflow-x: hidden;
-  -webkit-srollbar {
+  &::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
   }

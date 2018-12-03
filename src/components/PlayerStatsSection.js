@@ -5,7 +5,7 @@ import { animated } from 'react-spring';
 import { findTopStats, mergeVideosToStats } from '../util/stats';
 
 const PlayerStatsContainer = styled(animated.div)`
-  -webkit-srollbar {
+  -webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
   }
@@ -18,7 +18,7 @@ const PlayerStatsWrapper = styled.div`
   flex: 1;
   border-bottom-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  -webkit-srollbar {
+  &::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
   }

@@ -17,7 +17,7 @@ const PlayerName = styled.span`
   font-family: 'SF-Pro-Heavy';
   color: white;
   text-align: start;
-  padding-top: 10px;
+  padding-top: 0px;
   padding-bottom: 10px;
   padding-left: 10px;
   min-width: 100px;
