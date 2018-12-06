@@ -6,10 +6,9 @@ import VideoContext from '../context/VideoContext';
 import VideoItem from './VideoItem';
 const Wrapper = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: column;
-  max-height: 100px;
   overflow-x: hidden;
+  justify-content: center;
 `;
 
 const Title = styled.h1`
@@ -19,18 +18,21 @@ const Title = styled.h1`
   color: white;
   margin: 0px;
   padding-left: 5px;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 16px;
 `;
 
-const VideoItemWrapper = styled.div`
-  margin: 5px;
-`;
+const VideoItemWrapper = styled.div``;
 
 const VideoRow = styled.div`
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  margin-bottom: 10px;
+  background-color: #80808014;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
   justify-content: ${props => (props.longRow ? 'unset' : 'space-evenly')};
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;

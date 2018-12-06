@@ -9,7 +9,6 @@ const DividerWrapper = styled.div`
   width: 330px;
   height: 4px;
   background-color: #848181;
-  margin-bottom: 10px;
 `;
 
 const DividerItem = styled(animated.div)`

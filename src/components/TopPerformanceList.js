@@ -49,7 +49,7 @@ const LeftSection = styled.div`
 
 const RightSection = styled.div`
   display: flex;
-  background-color: #5edea4;
+  background-color: #80808014;
   border-top-right-radius: 5px;
 `;
 
@@ -66,8 +66,8 @@ const PerformanceType = styled.div`
   font-family: 'Fugaz One', cursive;
   font-weight: 800;
   text-transform: uppercase;
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 15px;
   padding-right: 15px;
   line-height: 1;

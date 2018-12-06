@@ -59,6 +59,10 @@ const checkStatType = stat => {
     return 'Double Double';
   } else if (doubleDigitCount >= 4) {
     return 'Quadruple Double';
+  } else if (stat['3P%'] === 100) {
+    return 'Perfect 3PT shooting';
+  } else if (stat['FG%'] >= 70) {
+    return `FG%: ${stat['FG%']}%`;
   } else {
     return '';
   }

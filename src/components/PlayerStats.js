@@ -13,14 +13,14 @@ const PlayerStatWrapper = styled.div`
 `;
 
 const PlayerName = styled.span`
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'SF-Pro-Heavy';
   color: white;
   text-align: start;
-  padding-top: 0px;
   padding-bottom: 10px;
   padding-left: 10px;
   min-width: 100px;
+  padding-top: 10px;
 `;
 
 const Stats = styled.div`
@@ -80,7 +80,13 @@ const GridItem = styled.div`
   justify-content: space-between;
 `;
 
-const PlayerStats = ({ stats = {}, videos = [], firstName, lastName }) => {
+const PlayerStats = ({
+  stats = {},
+  videos = [],
+  firstName,
+  lastName,
+  index,
+}) => {
   const { setVideoId, toggleVideoOverlay } = useContext(VideoContext);
   const renderStats = () => {
     return stats.map((stat, index) => {
