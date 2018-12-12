@@ -19,14 +19,10 @@ const ListItem = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   background-color: #1e1e1e;
   font-family: 'SF-Pro-Heavy';
   font-size: 16px;
-
-  &:last-child {
-    margin-bottom: 20px;
-  }
 `;
 
 const ListItemFlexRow = styled.div`
@@ -54,7 +50,7 @@ const RightSection = styled.div`
 `;
 
 const PlayerName = styled.div`
-  font-size: 16px;
+  font-size: 18px;
 `;
 
 const OpponentName = styled.div`

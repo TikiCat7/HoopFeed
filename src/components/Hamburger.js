@@ -16,16 +16,14 @@ const Line = styled.span`
   border-radius: 3px;
 `;
 
-class Hamburger extends React.Component {
-  render() {
-    return (
-      <Menu>
-        <Line />
-        <Line />
-        <Line />
-      </Menu>
-    );
-  }
+const Hamburger = () => {
+  return (
+    <Menu>
+      <Line />
+      <Line />
+      <Line />
+    </Menu>
+  );
 }
 
 export default Hamburger;

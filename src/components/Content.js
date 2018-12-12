@@ -13,6 +13,7 @@ import VideoOverlay from './VideoOverlay';
 import LoadingIndicator from './LoadingIndicator';
 import AboveContentButtons from './AboveContentButtons';
 import TopPerformanceList from './TopPerformanceList';
+import StreamableList from './StreamableList';
 import { findTopPerformers } from '../util/stats';
 
 const ScrollableArea = styled(animated.div)`
@@ -49,6 +50,8 @@ const Content = ({ client }) => {
     matchDate,
     togglePerformersList,
     showTopPerformers,
+    showStreamables,
+    toggleStreamablesList,
   } = useContext(AppContext);
   const {
     selectedVideo,
@@ -72,6 +75,14 @@ const Content = ({ client }) => {
 
   const togglePerformerList = () => {
     togglePerformersList(!showTopPerformers);
+    toggleStreamablesList(false);
+    setIndex(null);
+    setSelectedMatchVideos([]);
+  };
+
+  const toggleStreamableList = () => {
+    toggleStreamablesList(!showStreamables);
+    togglePerformersList(false);
     setIndex(null);
     setSelectedMatchVideos([]);
   };
@@ -96,6 +107,8 @@ const Content = ({ client }) => {
             <AboveContentButtons
               togglePerformerList={togglePerformerList}
               showTopPerformers={showTopPerformers}
+              toggleStreamableList={toggleStreamableList}
+              showStreamables={showStreamables}
             />
             {showTopPerformers && (
               <TopPerformanceList
@@ -104,7 +117,9 @@ const Content = ({ client }) => {
                 togglePerformersList={togglePerformersList}
               />
             )}
-
+            {showStreamables && (
+              <StreamableList showStreamables={showStreamables} />
+            )}
             <Trail
               native
               items={data.matchByDate}

@@ -28,7 +28,12 @@ const Button = styled.div`
   }
 `;
 
-const AboveContentButtons = ({ togglePerformerList, showTopPerformers }) => {
+const AboveContentButtons = ({
+  togglePerformerList,
+  showTopPerformers,
+  toggleStreamableList,
+  showStreamables,
+}) => {
   return (
     <Wrapper>
       <Button
@@ -37,7 +42,12 @@ const AboveContentButtons = ({ togglePerformerList, showTopPerformers }) => {
       >
         Top Performers
       </Button>
-      <Button>r/nba clips</Button>
+      <Button
+        on={showStreamables ? 1 : 0}
+        onClick={() => toggleStreamableList()}
+      >
+        r/nba clips
+      </Button>
     </Wrapper>
   );
 };
