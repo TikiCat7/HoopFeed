@@ -24,6 +24,6 @@ const Hamburger = () => {
       <Line />
     </Menu>
   );
-}
+};
 
 export default Hamburger;
