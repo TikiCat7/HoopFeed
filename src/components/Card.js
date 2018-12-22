@@ -11,6 +11,7 @@ import MatchHighlightsRail from './MatchHighlightsRail';
 import PlayerStatsSection from './PlayerStatsSection';
 
 const CardWrapper = styled(animated.div)`
+  cursor: pointer;
   user-select: none;
   height: 150px;
   color: white;

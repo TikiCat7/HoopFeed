@@ -36,6 +36,13 @@ const formatStats = stats => {
   return stats.filter(stat => stat.statsJSON.min !== 0);
 };
 
+const formatSingleStat = stat => {
+  stat.statsFormatted = createStatLine(stat);
+  stat.statType = checkStatType(stat);
+  // only return stats for players that actually played
+  return stat;
+};
+
 const checkStatType = stat => {
   let doubleDigitCount = 0;
   let fiveCount = 0;
@@ -124,4 +131,5 @@ module.exports = {
   findTopStats,
   mergeVideosToStats,
   findTopPerformers,
+  formatSingleStat,
 };

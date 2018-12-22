@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
+import { Link } from 'react-router-dom';
 
 import VideoContext from '../context/VideoContext';
 
@@ -12,7 +13,7 @@ const PlayerStatWrapper = styled.div`
   flex-direction: column;
 `;
 
-const PlayerName = styled.span`
+const PlayerName = styled(Link)`
   font-size: 18px;
   font-family: 'SF-Pro-Heavy';
   color: white;
@@ -21,6 +22,7 @@ const PlayerName = styled.span`
   padding-left: 10px;
   min-width: 100px;
   padding-top: 10px;
+  text-decoration: unset;
 `;
 
 const Stats = styled.div`
@@ -80,13 +82,7 @@ const GridItem = styled.div`
   justify-content: space-between;
 `;
 
-const PlayerStats = ({
-  stats = {},
-  videos = [],
-  firstName,
-  lastName,
-  index,
-}) => {
+const PlayerStats = ({ stats = {}, videos = [], firstName, lastName, id }) => {
   const { setVideoId, toggleVideoOverlay } = useContext(VideoContext);
   const renderStats = () => {
     return stats.map((stat, index) => {
@@ -120,10 +116,16 @@ const PlayerStats = ({
     });
   };
 
+  const handleClick = e => {
+    e.stopPropagation();
+  };
+
   return (
     <PlayerStatWrapper>
       <StatsRow>
-        <PlayerName>{`${firstName.substring(0, 1)}. ${lastName}`}</PlayerName>
+        <PlayerName onClick={handleClick} to={`/player/${id}`}>
+          {`${firstName.substring(0, 1)}. ${lastName}`}
+        </PlayerName>
       </StatsRow>
       <StatsRow>
         <Stats>{renderStats()}</Stats>

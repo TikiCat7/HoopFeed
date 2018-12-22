@@ -38,6 +38,7 @@ const PlayerStatsSection = ({ stats, videos }) => {
               stats={item.topStats.statsFormatted}
               firstName={item.firstName}
               lastName={item.lastName}
+              id={item.topStats.playerIdFull}
             />
           );
         })}

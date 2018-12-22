@@ -10,6 +10,7 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.div`
+  cursor: pointer;
   background-color: ${props => (props.on ? '#5edea4' : '#1e1e1e')};
   width: 130px;
   height: 37px;

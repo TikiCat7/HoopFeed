@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import { animated, Transition } from 'react-spring';
+import { Link } from 'react-router-dom';
 
 import VideoContext from '../context/VideoContext';
 import VideoItem from './VideoItem';
@@ -49,8 +50,10 @@ const RightSection = styled.div`
   border-top-right-radius: 5px;
 `;
 
-const PlayerName = styled.div`
+const PlayerName = styled(Link)`
   font-size: 18px;
+  text-decoration: unset;
+  color: white;
 `;
 
 const OpponentName = styled.div`
@@ -125,7 +128,6 @@ const TopPerformanceList = ({
   togglePerformersList,
 }) => {
   const { setVideoId, toggleVideoOverlay } = useContext(VideoContext);
-
   const opponentTeam = player => {
     if (player.player.teamId === player.player.hTeamId) {
       return player.hTeamName;
@@ -187,7 +189,7 @@ const TopPerformanceList = ({
         <ListItem key={player.playerIdFull}>
           <ListItemFlexTopRow>
             <LeftSection>
-              <PlayerName>
+              <PlayerName to={`/player/${player.playerIdFull}`}>
                 {`${player.player.firstName.substring(0, 1)}. ${
                   player.player.lastName
                 }`}

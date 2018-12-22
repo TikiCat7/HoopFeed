@@ -53,6 +53,7 @@ const Content = ({ client }) => {
     showStreamables,
     toggleStreamablesList,
   } = useContext(AppContext);
+
   const {
     selectedVideo,
     showVideoOverlay,
@@ -62,9 +63,10 @@ const Content = ({ client }) => {
     setSelectedMatchVideos,
     selectedMatchVideos,
   } = useContext(VideoContext);
+
   const hideVideo = () => {
     toggleVideoOverlay(false);
-    togglePerformersList(true);
+    togglePerformersList(false);
   };
 
   const onSelect = (index, youtubevideos = []) => {

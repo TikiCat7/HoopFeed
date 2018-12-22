@@ -3,11 +3,13 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import AppContext from '../context/AppContext';
 import VideoContext from '../context/VideoContext';
 import Header from './Header';
 import Content from './Content';
+import PlayerView from './PlayerView';
 
 const client = new ApolloClient({
   link: new HttpLink({
@@ -25,38 +27,46 @@ const App = () => {
   const [selectedMatchVideos, setSelectedMatchVideos] = useState([]);
   const [showTopPerformers, togglePerformersList] = useState(false);
   const [showStreamables, toggleStreamablesList] = useState(false);
+  const [selectedRange, setRange] = useState(5);
 
   return (
-    <ApolloProvider client={client}>
-      <AppContext.Provider
-        value={{
-          selectedIndex,
-          setIndex,
-          matchDate,
-          setMatchDate,
-          showTopPerformers,
-          togglePerformersList,
-          showStreamables,
-          toggleStreamablesList,
-        }}
-      >
-        <VideoContext.Provider
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <AppContext.Provider
           value={{
-            showVideoOverlay,
-            toggleVideoOverlay,
-            videoPlaying,
-            toggleVideoPlay,
-            selectedVideo,
-            setVideoId,
-            selectedMatchVideos,
-            setSelectedMatchVideos,
+            selectedIndex,
+            setIndex,
+            matchDate,
+            setMatchDate,
+            showTopPerformers,
+            togglePerformersList,
+            showStreamables,
+            toggleStreamablesList,
+            selectedRange,
+            setRange,
           }}
         >
-          {!showVideoOverlay && <Header />}
-          <Content />
-        </VideoContext.Provider>
-      </AppContext.Provider>
-    </ApolloProvider>
+          <VideoContext.Provider
+            value={{
+              showVideoOverlay,
+              toggleVideoOverlay,
+              videoPlaying,
+              toggleVideoPlay,
+              selectedVideo,
+              setVideoId,
+              selectedMatchVideos,
+              setSelectedMatchVideos,
+            }}
+          >
+            {!showVideoOverlay && <Header />}
+            <Switch>
+              <Route exact path="/" component={Content} />
+              <Route exact path="/player/:id" component={PlayerView} />
+            </Switch>
+          </VideoContext.Provider>
+        </AppContext.Provider>
+      </ApolloProvider>
+    </BrowserRouter>
   );
 };
 
