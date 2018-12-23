@@ -60,7 +60,7 @@ const LeftSection = styled.div`
 
 const RightSection = styled.div`
   display: flex;
-  background-color: #5edea4;
+  background-color: #80808014;
   border-top-right-radius: 5px;
 `;
 
@@ -258,7 +258,9 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
     return data.map(player => {
       const formatted = formatSingleStat(player.statsJSON);
       const playerVideos = player.match.youtubevideos.filter(
-        video => video.player.length > 0,
+        video =>
+          video.player.length > 0 &&
+          video.player[0].playerId === player.playerIdFull,
       );
       return (
         <ListItem key={player.id}>
