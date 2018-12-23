@@ -23,9 +23,15 @@ const Title = styled.h1`
   font-size: 16px;
 `;
 
-const VideoItemWrapper = styled.div``;
+const VideoItemWrapper = styled.div`
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  flex: 0 0 auto;
+`;
 
 const VideoRow = styled.div`
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -38,12 +44,11 @@ const VideoRow = styled.div`
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
   &::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
+    display: none;
   }
 
   &::after {
-    content: ${props => (props.longRow ? '' : 'unset')};
+    content: ${props => (props.longRow ? 'a' : 'unset')};
     flex: ${props => (props.longRow ? '0 0 5px' : 'none')};
   }
 `;

@@ -11,7 +11,7 @@ import MatchHighlightsRail from './MatchHighlightsRail';
 import PlayerStatsSection from './PlayerStatsSection';
 
 const CardWrapper = styled(animated.div)`
-  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   user-select: none;
   height: 150px;
   color: white;
