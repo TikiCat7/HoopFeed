@@ -4,7 +4,7 @@ import { animated, Transition } from 'react-spring';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
-import { formatSingleStat } from '../util/stats';
+import { formatSingleStat, findAverageStats } from '../util/stats';
 
 import VideoContext from '../context/VideoContext';
 import VideoItem from './VideoItem';
@@ -13,6 +13,7 @@ import VideoOverlay from './VideoOverlay';
 const ListWrapper = styled(animated.div)`
   width: 90%;
   max-width: 330px;
+  display: ${props => (props.show === 1 ? 'none' : null)};
 `;
 
 const ScrollableArea = styled(animated.div)`
@@ -97,7 +98,7 @@ const GridItem = styled.div`
 
 const StatNumber = styled.div`
   color: #848181;
-  font-size: 13px;
+  font-size: ${props => (props.average ? '11px' : '13px')};
   font-family: 'SF-Pro-Heavy';
   color: white;
   display: flex;
@@ -115,6 +116,7 @@ const StatType = styled.div`
   align-items: center;
   font-variant-numeric: tabular-nums;
   font-size: 10px;
+  font-size: ${props => (props.average ? '8px' : '10px')};
 `;
 
 const Stats = styled.div`
@@ -158,6 +160,27 @@ const RangeSelectItem = styled(animated.div)`
   cursor: pointer;
 `;
 
+const AverageStatsWrapper = styled.div`
+  width: 100%;
+  max-width: 330px;
+  max-height: 200px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: #1e1e1e;
+  font-family: 'SF-Pro-Heavy';
+  font-size: 16px;
+`;
+
+const Title = styled.div`
+  color: white;
+  font-size: 12px;
+`;
+
 const PlayerViewList = ({ data, selectedRange, setRange }) => {
   const {
     setVideoId,
@@ -195,16 +218,17 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
     toggleVideoOverlay(true);
   };
 
-  const renderStats = stats => {
+  const renderStats = (stats, average = false) => {
     return stats.statsFormatted.map((stat, index) => {
       return (
         <GridItem key={index}>
           <StatNumber
+            average={average}
             green={statToMakeGreen(stat.type) && stat.value >= 10 ? 1 : 0}
           >
             {stat.value}
           </StatNumber>
-          <StatType>{stat.type}</StatType>
+          <StatType average={average}>{stat.type}</StatType>
         </GridItem>
       );
     });
@@ -236,21 +260,48 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
           selected={selectedRange === 5}
           onClick={() => changeSelectedRange(5)}
         >
-          5 Game Avg
+          Recent 5
         </RangeSelectItem>
         <RangeSelectItem
           selected={selectedRange === 10}
           onClick={() => changeSelectedRange(10)}
         >
-          10 Game Avg
+          Recent 10
         </RangeSelectItem>
         <RangeSelectItem
           selected={selectedRange === 0}
           onClick={() => changeSelectedRange(0)}
         >
-          Season Avg
+          All Season
         </RangeSelectItem>
       </RangeSelectorWrapper>
+    );
+  };
+
+  const AverageStats = () => {
+    return (
+      <AverageStatsWrapper>
+        <ListItemFlexTopRow>
+          <LeftSection>
+            <Title>
+              {selectedRange === 0 ? 'Season' : selectedRange} Game Average
+            </Title>
+            {formatSingleStat(data[0].statsJSON).fn +
+              ' ' +
+              formatSingleStat(data[0].statsJSON).ln}
+          </LeftSection>
+          <RightSection>
+            {formatSingleStat(data[0].statsJSON).statType !== '' && (
+              <PerformanceType>
+                {formatSingleStat(data[0].statsJSON).statType}
+              </PerformanceType>
+            )}
+          </RightSection>
+        </ListItemFlexTopRow>
+        <ListItemFlexRow>
+          <Stats>{renderStats(findAverageStats(data), true)}</Stats>
+        </ListItemFlexRow>
+      </AverageStatsWrapper>
     );
   };
 
@@ -292,6 +343,7 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
   return (
     <ScrollableArea>
       <RangeSelector />
+      <AverageStats />
       <Transition
         native
         items={true}
@@ -301,7 +353,9 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
         {show =>
           show &&
           (props => (
-            <ListWrapper style={props}>{renderTopPerformers()}</ListWrapper>
+            <ListWrapper show={showVideoOverlay ? 1 : 0} style={props}>
+              {renderTopPerformers()}
+            </ListWrapper>
           ))
         }
       </Transition>

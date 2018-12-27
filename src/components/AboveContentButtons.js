@@ -23,6 +23,7 @@ const Button = styled.div`
   justify-content: center;
   border-radius: 10px;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
   &:first-child {
     margin-right: 10px;

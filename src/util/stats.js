@@ -43,6 +43,52 @@ const formatSingleStat = stat => {
   return stat;
 };
 
+const findAverageStats = stats => {
+  const statsCount = stats.length;
+  const finalStat = {
+    p: 0,
+    a: 0,
+    or: 0,
+    dr: 0,
+    b: 0,
+    min: 0,
+    s: 0,
+    fgm: 0,
+    fga: 0,
+    tm: 0,
+    ta: 0,
+  };
+  stats.forEach(stat => {
+    if (stat.statsJSON.min > 0) {
+      finalStat.p += stat.statsJSON.p;
+      finalStat.a += stat.statsJSON.a;
+      finalStat.or += stat.statsJSON.or;
+      finalStat.dr += stat.statsJSON.dr;
+      finalStat.b += stat.statsJSON.b;
+      finalStat.min += stat.statsJSON.min;
+      finalStat.s += stat.statsJSON.s;
+      finalStat.fgm += stat.statsJSON.fgm;
+      finalStat.fga += stat.statsJSON.fga;
+      finalStat.tm += stat.statsJSON.tm;
+      finalStat.ta += stat.statsJSON.ta;
+    }
+  });
+  finalStat.p = (finalStat.p / statsCount).toFixed(1);
+  finalStat.a = (finalStat.a / statsCount).toFixed(1);
+  finalStat.b = (finalStat.b / statsCount).toFixed(1);
+  finalStat.min = (finalStat.min / statsCount).toFixed(1);
+  finalStat.s = (finalStat.s / statsCount).toFixed(1);
+  finalStat.fgm = (finalStat.fgm / statsCount).toFixed(1);
+  finalStat.fga = (finalStat.fga / statsCount).toFixed(1);
+  finalStat.tm = (finalStat.tm / statsCount).toFixed(1);
+  finalStat.ta = (finalStat.ta / statsCount).toFixed(1);
+
+  const statsFormatted = createStatLine(finalStat, statsCount);
+  const statType = checkStatType(finalStat);
+  // only return stats for players that actually played
+  return { statsFormatted, statType };
+};
+
 const checkStatType = stat => {
   let doubleDigitCount = 0;
   let fiveCount = 0;
@@ -75,11 +121,18 @@ const checkStatType = stat => {
   }
 };
 
-const createStatLine = stat => {
+const createStatLine = (stat, statsCount) => {
   let finalStat = [];
   finalStat.push({ type: 'PTS', value: stat.p });
   finalStat.push({ type: 'AST', value: stat.a });
-  finalStat.push({ type: 'REB', value: stat.or + stat.dr });
+  if (statsCount) {
+    finalStat.push({
+      type: 'REB',
+      value: ((stat.or + stat.dr) / statsCount).toFixed(1),
+    });
+  } else {
+    finalStat.push({ type: 'REB', value: stat.or + stat.dr });
+  }
   finalStat.push({ type: 'BLK', value: stat.b });
   finalStat.push({ type: 'MIN', value: stat.min });
   finalStat.push({ type: 'STL', value: stat.s });
@@ -132,4 +185,5 @@ module.exports = {
   mergeVideosToStats,
   findTopPerformers,
   formatSingleStat,
+  findAverageStats,
 };

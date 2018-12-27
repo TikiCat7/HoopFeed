@@ -23,6 +23,7 @@ const LogoWrapper = styled.a`
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 `;
 
 const Title = styled.span`

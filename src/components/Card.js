@@ -29,6 +29,7 @@ const CardContent = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 5px;
+  margin-top: ${props => (props.statusNum === 1 ? '20px' : '0px')};
 `;
 
 const CardCenter = styled.div`
@@ -176,7 +177,7 @@ const Card = ({
   return (
     <CardWrapper style={cardHeightStyle} onClick={onCardClick} ref={El}>
       <CardHeader statusNum={statusNum} cardOpen={cardOpen} />
-      <CardContent>
+      <CardContent statusNum={statusNum}>
         <TeamInfo
           home
           homeSelected={homeSelected}
