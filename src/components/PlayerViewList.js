@@ -284,7 +284,7 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
         <ListItemFlexTopRow>
           <LeftSection>
             <Title>
-              {selectedRange === 0 ? 'Season' : selectedRange} Game Average
+              {selectedRange === 0 ? 'Season' : `${selectedRange} Game`} Average
             </Title>
             {formatSingleStat(data[0].statsJSON).fn +
               ' ' +
