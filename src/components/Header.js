@@ -61,16 +61,19 @@ const DateStyle = styled.span`
   margin-right: 10px;
 `;
 
-const Calednarwrapper = styled.div`
+const Calendarwrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
 const Header = () => {
-  const { matchDate, setMatchDate, togglePerformersList } = useContext(
-    AppContext,
-  );
+  const {
+    matchDate,
+    setMatchDate,
+    togglePerformersList,
+    showDate,
+  } = useContext(AppContext);
   const adjustedDate = direction => {
     return new Date(
       matchDate.setTime(matchDate.getTime() - 1 * direction * 86400000),
@@ -91,11 +94,14 @@ const Header = () => {
           <SubTitle>BETA</SubTitle>
         </div>
       </LogoWrapper>
-      <Calednarwrapper>
-        <Arrow onClick={() => handleDateClick(1)}>←</Arrow>
-        <DateStyle>{splitDate(formatDate(matchDate))}</DateStyle>
-        <Arrow onClick={() => handleDateClick(-1)}>→</Arrow>
-      </Calednarwrapper>
+      {showDate && (
+        <Calendarwrapper>
+          <Arrow onClick={() => handleDateClick(1)}>←</Arrow>
+          <DateStyle>{splitDate(formatDate(matchDate))}</DateStyle>
+          <Arrow onClick={() => handleDateClick(-1)}>→</Arrow>
+        </Calendarwrapper>
+      )}
+
       <Hamburger />
     </HeaderWrapper>
   );

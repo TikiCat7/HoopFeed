@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AppContext from '../context/AppContext';
 import styled from 'styled-components/macro';
 import { Trail, animated, Transition } from 'react-spring';
@@ -9,7 +9,10 @@ import LoadingIndicator from './LoadingIndicator';
 import PlayerViewList from './PlayerViewList';
 
 const PlayerView = props => {
-  const { selectedRange, setRange } = useContext(AppContext);
+  const { selectedRange, setRange, setShowDate } = useContext(AppContext);
+  useEffect(() => {
+    setShowDate(false);
+  }, []);
   return (
     <Query
       query={PlayerRecentPerformanceQuery}

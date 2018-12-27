@@ -28,6 +28,7 @@ const App = () => {
   const [showTopPerformers, togglePerformersList] = useState(false);
   const [showStreamables, toggleStreamablesList] = useState(false);
   const [selectedRange, setRange] = useState(5);
+  const [showDate, setShowDate] = useState(true);
 
   return (
     <BrowserRouter>
@@ -44,6 +45,8 @@ const App = () => {
             toggleStreamablesList,
             selectedRange,
             setRange,
+            showDate,
+            setShowDate,
           }}
         >
           <VideoContext.Provider

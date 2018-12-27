@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { Trail, animated, Transition } from 'react-spring';
 import { Query } from 'react-apollo';
@@ -52,6 +52,7 @@ const Content = ({ client }) => {
     showTopPerformers,
     showStreamables,
     toggleStreamablesList,
+    setShowDate,
   } = useContext(AppContext);
 
   const {
@@ -63,6 +64,10 @@ const Content = ({ client }) => {
     setSelectedMatchVideos,
     selectedMatchVideos,
   } = useContext(VideoContext);
+
+  useEffect(() => {
+    setShowDate(true);
+  }, []);
 
   const hideVideo = () => {
     toggleVideoOverlay(false);
