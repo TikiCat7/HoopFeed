@@ -286,9 +286,9 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
             <Title>
               {selectedRange === 0 ? 'Season' : `${selectedRange} Game`} Average
             </Title>
-            {formatSingleStat(data[0].statsJSON).fn +
-              ' ' +
-              formatSingleStat(data[0].statsJSON).ln}
+            {`${data[0].statsJSON.fn.substring(0, 1)}. ${
+              formatSingleStat(data[0].statsJSON).ln
+            }`}
           </LeftSection>
           <RightSection>
             {formatSingleStat(data[0].statsJSON).statType !== '' && (
