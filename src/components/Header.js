@@ -57,9 +57,9 @@ const DateStyle = styled.span`
   color: white;
   font-family: 'Fugaz One', cursive;
   font-weight: 800;
-  font-size: 14px;
-  margin-left: 10px;
-  margin-right: 10px;
+  font-size: 12px;
+  margin-left: 5px;
+  margin-right: 5px;
 `;
 
 const Calendarwrapper = styled.div`
