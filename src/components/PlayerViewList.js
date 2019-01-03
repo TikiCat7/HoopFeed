@@ -109,6 +109,10 @@ const StatNumber = styled.div`
   color: ${props => (props.green ? '#5edea4' : 'white')};
 `;
 
+const AvgStatNumber = styled(StatNumber)`
+  color: ${props => (props.green ? '#5edea4' : 'white')};
+`;
+
 const StatType = styled.div`
   display: flex;
   flex: 1;
@@ -141,7 +145,7 @@ const VideoRow = styled.div`
 `;
 
 const RangeSelectorWrapper = styled(animated.div)`
-  width: 100%;
+  width: 330px;
   max-width: 500px;
   display: flex;
   align-items: center;
@@ -153,8 +157,8 @@ const RangeSelectItem = styled(animated.div)`
   color: white;
   font-family: 'Fugaz One', cursive;
   font-size: 13px;
-  background-color: ${props => (props.selected ? '#5edea4' : 'unset')};
-  border-radius: 10px;
+  background-color: ${props => (props.selected ? '#0f5033' : 'unset')};
+  border-radius: 6px;
   text-transform: uppercase;
   padding: 2px 10px;
   cursor: pointer;
@@ -171,14 +175,18 @@ const AverageStatsWrapper = styled.div`
   justify-content: center;
   border-radius: 5px;
   margin-bottom: 20px;
-  background-color: #1e1e1e;
+  background-color: #0f5033;
   font-family: 'SF-Pro-Heavy';
   font-size: 16px;
 `;
 
 const Title = styled.div`
-  color: white;
+  color: #5fdda4;
   font-size: 12px;
+`;
+
+const Name = styled.div`
+  color: white;
 `;
 
 const PlayerViewList = ({ data, selectedRange, setRange }) => {
@@ -222,13 +230,27 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
     return stats.statsFormatted.map((stat, index) => {
       return (
         <GridItem key={index}>
-          <StatNumber
-            average={average}
-            green={statToMakeGreen(stat.type) && stat.value >= 10 ? 1 : 0}
-          >
-            {stat.value}
-          </StatNumber>
-          <StatType average={average}>{stat.type}</StatType>
+          {average ? (
+            <React.Fragment>
+              <AvgStatNumber
+                average={average}
+                green={statToMakeGreen(stat.type) && stat.value >= 10 ? 1 : 0}
+              >
+                {stat.value}
+              </AvgStatNumber>
+              <StatType average={average}>{stat.type}</StatType>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <StatNumber
+                average={average}
+                green={statToMakeGreen(stat.type) && stat.value >= 10 ? 1 : 0}
+              >
+                {stat.value}
+              </StatNumber>
+              <StatType average={average}>{stat.type}</StatType>
+            </React.Fragment>
+          )}
         </GridItem>
       );
     });
@@ -286,9 +308,11 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
             <Title>
               {selectedRange === 0 ? 'Season' : `${selectedRange} Game`} Average
             </Title>
-            {`${data[0].statsJSON.fn.substring(0, 1)}. ${
-              formatSingleStat(data[0].statsJSON).ln
-            }`}
+            <Name>
+              {`${data[0].statsJSON.fn.substring(0, 1)}. ${
+                formatSingleStat(data[0].statsJSON).ln
+              }`}
+            </Name>
           </LeftSection>
           <RightSection>
             {formatSingleStat(data[0].statsJSON).statType !== '' && (

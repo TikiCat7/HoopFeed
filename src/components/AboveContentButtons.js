@@ -7,27 +7,31 @@ const Wrapper = styled.div`
   justify-content: space-evenly;
   margin-bottom: 20px;
   margin-top: 10px;
+  width: 330px;
 `;
 
 const Button = styled.div`
   cursor: pointer;
-  background-color: ${props => (props.on ? '#5edea4' : '#1e1e1e')};
-  width: 130px;
-  height: 37px;
+  background-color: ${props => (props.on ? '#0f5033' : '#1e1e1e')};
+  padding: 2px 10px;
   text-transform: uppercase;
   color: white;
-  font-size: 10px;
   font-family: 'Fugaz One', cursive;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 6px;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
   &:first-child {
     margin-right: 10px;
   }
+`;
+
+const ButtonText = styled.span`
+  font-size: 13px;
+  text-transform: uppercase;
 `;
 
 const AboveContentButtons = ({
@@ -42,13 +46,13 @@ const AboveContentButtons = ({
         on={showTopPerformers ? 1 : 0}
         onClick={() => togglePerformerList()}
       >
-        Top Performers
+        <ButtonText>Top Performers</ButtonText>
       </Button>
       <Button
         on={showStreamables ? 1 : 0}
         onClick={() => toggleStreamableList()}
       >
-        r/nba clips
+        <ButtonText>r/nba clips</ButtonText>
       </Button>
     </Wrapper>
   );
