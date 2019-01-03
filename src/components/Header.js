@@ -73,6 +73,7 @@ const Header = () => {
     matchDate,
     setMatchDate,
     togglePerformersList,
+    toggleStreamablesList,
     showDate,
   } = useContext(AppContext);
   const adjustedDate = direction => {
@@ -82,6 +83,7 @@ const Header = () => {
   };
   const handleDateClick = amount => {
     togglePerformersList(false);
+    toggleStreamablesList(false);
     setMatchDate(adjustedDate(amount));
   };
   return (
