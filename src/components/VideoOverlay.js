@@ -26,6 +26,7 @@ const Content = styled.div`
   font-family: 'Fugaz one';
   color: white;
   width: 100%;
+  height: 100%;
 `;
 
 const VideoContent = styled.div`
@@ -112,8 +113,6 @@ const VideoOverlay = ({
   const [playBackReady, setPlayBackStatus] = useState(false);
 
   const opts = {
-    height: '300px',
-    width: '300px',
     playerVars: {
       autoplay: 1,
       fs: 1,
@@ -163,7 +162,7 @@ const VideoOverlay = ({
     <React.Fragment>
       <VideoOverlayWrapper style={style}>
         <Content>
-          <VideoContent videoPlaying={videoPlaying}>
+          <VideoContent>
             <YouTube
               className="iframe-style"
               style={iframeStyle}
