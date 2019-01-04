@@ -15,6 +15,13 @@ const StreamableListWrapper = styled(animated.div)`
   flex-direction: column;
 `;
 
+const ErrorMsg = styled.span`
+  color: white;
+  font-weight: 800;
+  font-family: 'SF-Pro-Heavy';
+  font-size: 18px;
+`;
+
 const StreamableList = ({ showStreamables }) => {
   const { matchDate } = useContext(AppContext);
   return (
@@ -26,28 +33,32 @@ const StreamableList = ({ showStreamables }) => {
         if (loading) return <div>Loading</div>;
         if (error) return <div>Error</div>;
         if (data) {
-          return (
-            <Transition
-              native
-              items={showStreamables}
-              from={{ opacity: 0 }}
-              enter={{ opacity: 1 }}
-            >
-              {show =>
-                show &&
-                (props => (
-                  <StreamableListWrapper style={props}>
-                    {data.streamableByDate
-                      .sort((a, b) => (a.score > b.score ? -1 : 1))
-                      .slice(0, 5)
-                      .map((streamable, index) => (
-                        <Streamable key={index} data={streamable} />
-                      ))}
-                  </StreamableListWrapper>
-                ))
-              }
-            </Transition>
-          );
+          if (data.streamableByDate.length === 0) {
+            return <ErrorMsg>No Data Available</ErrorMsg>;
+          } else {
+            return (
+              <Transition
+                native
+                items={showStreamables}
+                from={{ opacity: 0 }}
+                enter={{ opacity: 1 }}
+              >
+                {show =>
+                  show &&
+                  (props => (
+                    <StreamableListWrapper style={props}>
+                      {data.streamableByDate
+                        .sort((a, b) => (a.score > b.score ? -1 : 1))
+                        .slice(0, 5)
+                        .map((streamable, index) => (
+                          <Streamable key={index} data={streamable} />
+                        ))}
+                    </StreamableListWrapper>
+                  ))
+                }
+              </Transition>
+            );
+          }
         }
       }}
     </Query>

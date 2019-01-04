@@ -122,6 +122,18 @@ const VideoRow = styled.div`
   padding-bottom: 10px;
 `;
 
+const ErrorMsg = styled.span`
+  color: white;
+  font-weight: 800;
+  font-family: 'SF-Pro-Heavy';
+  font-size: 18px;
+  text-align: center;
+`;
+
+const ErrorMsgWrapper = styled.div`
+  text-align: center;
+`;
+
 const TopPerformanceList = ({
   topPerformers,
   showTopPerformers,
@@ -184,35 +196,43 @@ const TopPerformanceList = ({
   };
 
   const renderTopPerformers = () => {
-    return topPerformers.map(player => {
-      return (
-        <ListItem key={player.playerIdFull}>
-          <ListItemFlexTopRow>
-            <LeftSection>
-              <PlayerName to={`/player/${player.playerIdFull}`}>
-                {`${player.player.firstName.substring(0, 1)}. ${
-                  player.player.lastName
-                }`}
-              </PlayerName>
-              <OpponentName>vs {opponentTeam(player)}</OpponentName>
-            </LeftSection>
-            <RightSection>
-              {player.statType !== '' && (
-                <PerformanceType>{player.statType}</PerformanceType>
-              )}
-            </RightSection>
-          </ListItemFlexTopRow>
-          <ListItemFlexRow>
-            <Stats>{renderStats(player.statsFormatted)}</Stats>
-          </ListItemFlexRow>
-          {player.videos.length > 0 && (
+    if (topPerformers.length > 0) {
+      return topPerformers.map(player => {
+        return (
+          <ListItem key={player.playerIdFull}>
+            <ListItemFlexTopRow>
+              <LeftSection>
+                <PlayerName to={`/player/${player.playerIdFull}`}>
+                  {`${player.player.firstName.substring(0, 1)}. ${
+                    player.player.lastName
+                  }`}
+                </PlayerName>
+                <OpponentName>vs {opponentTeam(player)}</OpponentName>
+              </LeftSection>
+              <RightSection>
+                {player.statType !== '' && (
+                  <PerformanceType>{player.statType}</PerformanceType>
+                )}
+              </RightSection>
+            </ListItemFlexTopRow>
             <ListItemFlexRow>
-              <VideoRow>{renderVideos(player.videos)}</VideoRow>
+              <Stats>{renderStats(player.statsFormatted)}</Stats>
             </ListItemFlexRow>
-          )}
-        </ListItem>
+            {player.videos.length > 0 && (
+              <ListItemFlexRow>
+                <VideoRow>{renderVideos(player.videos)}</VideoRow>
+              </ListItemFlexRow>
+            )}
+          </ListItem>
+        );
+      });
+    } else {
+      return (
+        <ErrorMsgWrapper>
+          <ErrorMsg>No Data Available</ErrorMsg>
+        </ErrorMsgWrapper>
       );
-    });
+    }
   };
   return (
     <Transition

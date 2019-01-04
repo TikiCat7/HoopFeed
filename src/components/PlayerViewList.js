@@ -110,7 +110,7 @@ const StatNumber = styled.div`
 `;
 
 const AvgStatNumber = styled(StatNumber)`
-  color: ${props => (props.green ? '#5edea4' : 'white')};
+  color: #135630;
 `;
 
 const StatType = styled.div`
@@ -154,10 +154,10 @@ const RangeSelectorWrapper = styled(animated.div)`
 `;
 
 const RangeSelectItem = styled(animated.div)`
-  color: white;
+  color: ${props => (props.selected ? '#135630' : 'white')};
   font-family: 'Fugaz One', cursive;
   font-size: 13px;
-  background-color: ${props => (props.selected ? '#0f5033' : 'unset')};
+  background-color: ${props => (props.selected ? '#5edea4' : 'unset')};
   border-radius: 6px;
   text-transform: uppercase;
   padding: 2px 10px;
@@ -168,28 +168,44 @@ const AverageStatsWrapper = styled.div`
   width: 100%;
   max-width: 330px;
   max-height: 200px;
-  color: white;
+  color: #135630;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   margin-bottom: 20px;
-  background-color: #0f5033;
+  background-color: #5edea4;
   font-family: 'SF-Pro-Heavy';
   font-size: 16px;
 `;
 
 const Title = styled.div`
-  color: #5fdda4;
+  color: #135630;
   font-size: 12px;
 `;
 
 const Name = styled.div`
-  color: white;
+  color: #062f0a;
 `;
 
-const PlayerViewList = ({ data, selectedRange, setRange }) => {
+const BackButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 330px;
+`;
+
+const BackButton = styled.div`
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: 'Fugaz One', cursive;
+  font-weight: 800px;
+  text-transform: uppercase;
+`;
+
+const PlayerViewList = ({ history, data, selectedRange, setRange }) => {
   const {
     setVideoId,
     toggleVideoOverlay,
@@ -273,6 +289,14 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
 
   const changeSelectedRange = index => {
     setRange(index);
+  };
+
+  const BackButtonSelector = () => {
+    return (
+      <BackButtonWrapper>
+        <BackButton onClick={() => history.goBack()}>Back</BackButton>
+      </BackButtonWrapper>
+    );
   };
 
   const RangeSelector = () => {
@@ -366,6 +390,7 @@ const PlayerViewList = ({ data, selectedRange, setRange }) => {
   };
   return (
     <ScrollableArea>
+      <BackButtonSelector />
       <RangeSelector />
       <AverageStats />
       <Transition

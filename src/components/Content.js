@@ -49,6 +49,8 @@ const Content = ({ client }) => {
     setIndex,
     matchDate,
     togglePerformersList,
+    showMatches,
+    toggleMatchesList,
     showTopPerformers,
     showStreamables,
     toggleStreamablesList,
@@ -81,15 +83,25 @@ const Content = ({ client }) => {
   };
 
   const togglePerformerList = () => {
-    togglePerformersList(!showTopPerformers);
+    togglePerformersList(showTopPerformers ? true : !showTopPerformers);
     toggleStreamablesList(false);
+    toggleMatchesList(false);
     setIndex(null);
     setSelectedMatchVideos([]);
   };
 
   const toggleStreamableList = () => {
-    toggleStreamablesList(!showStreamables);
+    toggleStreamablesList(showStreamables ? true : !showStreamables);
     togglePerformersList(false);
+    toggleMatchesList(false);
+    setIndex(null);
+    setSelectedMatchVideos([]);
+  };
+
+  const toggleMatchList = () => {
+    toggleMatchesList(showMatches ? true : !showMatches);
+    togglePerformersList(false);
+    toggleStreamablesList(false);
     setIndex(null);
     setSelectedMatchVideos([]);
   };
@@ -116,6 +128,8 @@ const Content = ({ client }) => {
               showTopPerformers={showTopPerformers}
               toggleStreamableList={toggleStreamableList}
               showStreamables={showStreamables}
+              showMatches={showMatches}
+              toggleMatchesList={toggleMatchList}
             />
             {showTopPerformers && (
               <TopPerformanceList
@@ -127,32 +141,34 @@ const Content = ({ client }) => {
             {showStreamables && (
               <StreamableList showStreamables={showStreamables} />
             )}
-            <Trail
-              native
-              items={data.matchByDate}
-              from={{
-                opacity: 0,
-                transform: 'translateX(-100px)',
-              }}
-              to={{
-                opacity: 1,
-                transform: 'translateX(0px)',
-              }}
-              keys={item => item.matchId}
-            >
-              {(item, index) => props => (
-                // work around for https://github.com/styled-components/styled-components/issues/1198
-                <CardContainer style={props} show={showVideoOverlay ? 1 : 0}>
-                  <Card
-                    {...item}
-                    index={index}
-                    selectedIndex={selectedIndex}
-                    onSelect={onSelect}
-                    showVideoOverlay={showVideoOverlay}
-                  />
-                </CardContainer>
-              )}
-            </Trail>
+            {showMatches && (
+              <Trail
+                native
+                items={data.matchByDate}
+                from={{
+                  opacity: 0,
+                  transform: 'translateX(-100px)',
+                }}
+                to={{
+                  opacity: 1,
+                  transform: 'translateX(0px)',
+                }}
+                keys={item => item.matchId}
+              >
+                {(item, index) => props => (
+                  // work around for https://github.com/styled-components/styled-components/issues/1198
+                  <CardContainer style={props} show={showVideoOverlay ? 1 : 0}>
+                    <Card
+                      {...item}
+                      index={index}
+                      selectedIndex={selectedIndex}
+                      onSelect={onSelect}
+                      showVideoOverlay={showVideoOverlay}
+                    />
+                  </CardContainer>
+                )}
+              </Trail>
+            )}
             <Transition
               native
               items={showVideoOverlay}

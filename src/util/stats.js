@@ -23,7 +23,7 @@ const findTopPerformers = matchData => {
       topPerformers = topPerformers.concat(withTeamNames);
     }
   });
-  return findTopStats(topPerformers).slice(0, 5);
+  return findTopStats(topPerformers).slice(0, 10);
 };
 
 const formatStats = stats => {

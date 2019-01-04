@@ -25,6 +25,7 @@ const App = () => {
   const [selectedIndex, setIndex] = useState(null);
   const [matchDate, setMatchDate] = useState(new Date());
   const [selectedMatchVideos, setSelectedMatchVideos] = useState([]);
+  const [showMatches, toggleMatchesList] = useState(true);
   const [showTopPerformers, togglePerformersList] = useState(false);
   const [showStreamables, toggleStreamablesList] = useState(false);
   const [selectedRange, setRange] = useState(5);
@@ -39,6 +40,8 @@ const App = () => {
             setIndex,
             matchDate,
             setMatchDate,
+            showMatches,
+            toggleMatchesList,
             showTopPerformers,
             togglePerformersList,
             showStreamables,

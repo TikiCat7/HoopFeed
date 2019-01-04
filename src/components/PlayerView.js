@@ -27,6 +27,7 @@ const PlayerView = props => {
               data={data.playerRecentPerformanceQuery}
               selectedRange={selectedRange}
               setRange={setRange}
+              history={props.history}
             />
           );
         }
