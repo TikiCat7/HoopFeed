@@ -84,20 +84,25 @@ const findAverageStats = stats => {
   finalStat.ta = (finalStat.ta / statsCount).toFixed(1);
 
   const statsFormatted = createStatLine(finalStat, statsCount);
-  const statType = checkStatType(finalStat);
+  const statType = checkStatType(finalStat, statsCount);
   // only return stats for players that actually played
   return { statsFormatted, statType };
 };
 
-const checkStatType = stat => {
+const checkStatType = (stat, statsCount) => {
   let doubleDigitCount = 0;
   let fiveCount = 0;
   if (stat.p >= 10) doubleDigitCount++;
   if (stat.a >= 10) doubleDigitCount++;
-  if (stat.or + stat.dr >= 10) doubleDigitCount++;
+  if (statsCount) {
+    if ((stat.or + stat.dr) / statsCount.toFixed(1) > 10) {
+      doubleDigitCount++;
+    }
+  } else {
+    if (stat.or + stat.dr >= 10) doubleDigitCount++;
+  }
   if (stat.b >= 10) doubleDigitCount++;
   if (stat.s >= 10) doubleDigitCount++;
-
   if (stat.p >= 5) fiveCount++;
   if (stat.a >= 5) fiveCount++;
   if (stat.or + stat.dr >= 5) fiveCount++;

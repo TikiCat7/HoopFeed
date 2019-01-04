@@ -203,6 +203,7 @@ const BackButton = styled.div`
   font-family: 'Fugaz One', cursive;
   font-weight: 800px;
   text-transform: uppercase;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 `;
 
 const PlayerViewList = ({ history, data, selectedRange, setRange }) => {
@@ -341,7 +342,7 @@ const PlayerViewList = ({ history, data, selectedRange, setRange }) => {
           <RightSection>
             {formatSingleStat(data[0].statsJSON).statType !== '' && (
               <PerformanceType>
-                {formatSingleStat(data[0].statsJSON).statType}
+                {findAverageStats(data).statType}
               </PerformanceType>
             )}
           </RightSection>
