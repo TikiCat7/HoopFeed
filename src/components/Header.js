@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 
 import Hamburger from './Hamburger';
@@ -43,7 +43,10 @@ const BallWrapper = styled.div`
   margin: 10px;
 `;
 
-const Header = () => {
+const Header = ({ toggleOptionsOverlay, showOptionsOverlay }) => {
+  const handleClick = () => {
+    toggleOptionsOverlay(!showOptionsOverlay);
+  };
   return (
     <HeaderWrapper>
       <LogoWrapper href="https://hoopfeed.io">
@@ -55,7 +58,7 @@ const Header = () => {
           <SubTitle>BETA</SubTitle>
         </div>
       </LogoWrapper>
-      <Hamburger />
+      <Hamburger handleClick={handleClick} />
     </HeaderWrapper>
   );
 };

@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import AppContext from '../context/AppContext';
-import styled from 'styled-components/macro';
-import { Trail, animated, Transition } from 'react-spring';
 import { Query } from 'react-apollo';
 import PlayerRecentPerformanceQuery from '../queries/PlayerRecentPerformance';
 import { withRouter } from 'react-router-dom';

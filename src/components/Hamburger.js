@@ -5,6 +5,7 @@ const Menu = styled.div`
   color: white;
   cursor: pointer;
   margin-right: 10px;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 `;
 
 const Line = styled.span`
@@ -16,9 +17,9 @@ const Line = styled.span`
   border-radius: 3px;
 `;
 
-const Hamburger = () => {
+const Hamburger = ({ handleClick }) => {
   return (
-    <Menu>
+    <Menu onClick={() => handleClick()}>
       <Line />
       <Line />
       <Line />

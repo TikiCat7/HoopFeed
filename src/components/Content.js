@@ -55,6 +55,7 @@ const Content = ({ client }) => {
     showStreamables,
     toggleStreamablesList,
     setShowDate,
+    favoriteTeam,
   } = useContext(AppContext);
 
   const {
@@ -160,6 +161,7 @@ const Content = ({ client }) => {
                   <CardContainer style={props} show={showVideoOverlay ? 1 : 0}>
                     <Card
                       {...item}
+                      favoriteTeam={favoriteTeam}
                       index={index}
                       selectedIndex={selectedIndex}
                       onSelect={onSelect}

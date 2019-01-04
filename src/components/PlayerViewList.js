@@ -1,8 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import { animated, Transition } from 'react-spring';
 import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
 
 import { formatSingleStat, findAverageStats } from '../util/stats';
 

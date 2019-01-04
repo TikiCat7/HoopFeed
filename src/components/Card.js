@@ -62,6 +62,7 @@ const Card = ({
   matchStats = [],
   youtubevideos = [],
   showVideoOverlay,
+  favoriteTeam,
 }) => {
   let [cardOpen, toggleCardOpen] = useState(false);
   let [homeSelected, toggleDivider] = useState(true);
@@ -188,6 +189,7 @@ const Card = ({
           record={hTeamRecordFormatted}
           scoreStyle={scoreStyle}
           score={hTeamScore}
+          favTeam={favoriteTeam}
         />
         <CardCenter cardOpen={cardOpen}>
           <GameTime
@@ -216,6 +218,7 @@ const Card = ({
           record={vTeamRecordFormatted}
           scoreStyle={scoreStyle}
           score={vTeamScore}
+          favTeam={favoriteTeam}
         />
       </CardContent>
       {cardOpen && (

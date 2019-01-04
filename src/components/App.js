@@ -4,10 +4,12 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
 
 import AppContext from '../context/AppContext';
 import VideoContext from '../context/VideoContext';
 import Header from './Header';
+import OptionsOverlay from './OptionsOverlay';
 import Content from './Content';
 import PlayerView from './PlayerView';
 
@@ -19,6 +21,8 @@ const client = new ApolloClient({
 });
 
 const App = () => {
+  const [favoriteTeam, setFavoriteTeam] = useLocalStorage('favoriteTeam');
+  const [showOptionsOverlay, toggleOptionsOverlay] = useState(false);
   const [showVideoOverlay, toggleVideoOverlay] = useState(false);
   const [selectedVideo, setVideoId] = useState(null);
   const [videoPlaying, toggleVideoPlay] = useState(false);
@@ -50,6 +54,10 @@ const App = () => {
             setRange,
             showDate,
             setShowDate,
+            showOptionsOverlay,
+            toggleOptionsOverlay,
+            favoriteTeam,
+            setFavoriteTeam,
           }}
         >
           <VideoContext.Provider
@@ -64,7 +72,18 @@ const App = () => {
               setSelectedMatchVideos,
             }}
           >
-            {!showVideoOverlay && <Header />}
+            {!showVideoOverlay && (
+              <Header
+                toggleOptionsOverlay={toggleOptionsOverlay}
+                showOptionsOverlay={showOptionsOverlay}
+              />
+            )}
+            <OptionsOverlay
+              toggleOptionsOverlay={toggleOptionsOverlay}
+              showOptionsOverlay={showOptionsOverlay}
+              favoriteTeam={favoriteTeam}
+              setFavoriteTeam={setFavoriteTeam}
+            />
             <Switch>
               <Route exact path="/" component={Content} />
               <Route exact path="/player/:id" component={PlayerView} />

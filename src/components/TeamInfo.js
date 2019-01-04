@@ -16,7 +16,7 @@ const TeamInfoWrapper = styled.div`
 const TeamName = styled(animated.div)`
   font-family: 'Fugaz One', cursive;
   font-weight: 800;
-  color: white;
+  color: ${props => (props.favteam ? '#5edea4' : 'white')};
   text-transform: uppercase;
 `;
 
@@ -42,6 +42,7 @@ const TeamInfo = ({
   cardOpen,
   homeSelected,
   home,
+  favTeam,
 }) => {
   const handleClick = event => {
     homeSelected && !home && cardOpen && toggleDivider(event);
@@ -50,7 +51,9 @@ const TeamInfo = ({
   };
   return (
     <TeamInfoWrapper onClick={handleClick} home={home}>
-      <TeamName style={teamNameStyle}>{teamName}</TeamName>
+      <TeamName favteam={favTeam === teamName} style={teamNameStyle}>
+        {teamName}
+      </TeamName>
       <TeamRecord>{record}</TeamRecord>
       <Score style={scoreStyle}>{score}</Score>
     </TeamInfoWrapper>

@@ -7608,6 +7608,10 @@ react-spring@6.1.1:
   dependencies:
     "@babel/runtime" "^7.1.2"
 
+react-use-localstorage@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-use-localstorage/-/react-use-localstorage-0.0.5.tgz#e40858ac3bf4e83be15df663a502cfafa8fdd797"
+
 react-youtube@^7.8.0:
   version "7.8.0"
   resolved "https://registry.yarnpkg.com/react-youtube/-/react-youtube-7.8.0.tgz#f782995cc5bad1c0378e3669359aa786acba2d31"
