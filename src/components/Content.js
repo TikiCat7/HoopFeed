@@ -73,7 +73,7 @@ const Content = ({ client }) => {
 
   const hideVideo = () => {
     toggleVideoOverlay(false);
-    togglePerformersList(false);
+    togglePerformersList(true);
   };
 
   const onSelect = (index, youtubevideos = []) => {
