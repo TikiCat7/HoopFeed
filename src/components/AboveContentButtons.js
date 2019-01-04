@@ -47,7 +47,7 @@ const DateStyle = styled.span`
   color: white;
   font-family: 'Fugaz One', cursive;
   font-weight: 800;
-  font-size: 22px;
+  font-size: 17px;
   margin-bottom: 20px;
 `;
 
