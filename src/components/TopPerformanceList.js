@@ -4,6 +4,7 @@ import { animated, Transition } from 'react-spring';
 import { Link } from 'react-router-dom';
 
 import VideoContext from '../context/VideoContext';
+import AppContext from '../context/AppContext';
 import VideoItem from './VideoItem';
 
 const ListWrapper = styled(animated.div)`
@@ -15,7 +16,7 @@ const ListItem = styled.div`
   width: 100%;
   max-height: 200px;
   color: white;
-  display: flex;
+  display: ${props => (props.show === 1 ? 'none' : 'flex')};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -139,6 +140,10 @@ const TopPerformanceList = ({
   showTopPerformers,
   togglePerformersList,
 }) => {
+  const {
+    toggleTopPerformerListLastOpen,
+    topPerformerListLastOpen,
+  } = useContext(AppContext);
   const { setVideoId, toggleVideoOverlay } = useContext(VideoContext);
   const opponentTeam = player => {
     if (player.player.teamId === player.player.hTeamId) {
@@ -162,7 +167,9 @@ const TopPerformanceList = ({
     event.stopPropagation();
     setVideoId(id);
     toggleVideoOverlay(true);
-    togglePerformersList(false);
+    // togglePerformersList(false);
+    toggleTopPerformerListLastOpen(true);
+    // document.body.style.overflow = 'hidden';
   };
 
   const renderStats = stats => {
@@ -199,7 +206,10 @@ const TopPerformanceList = ({
     if (topPerformers.length > 0) {
       return topPerformers.map(player => {
         return (
-          <ListItem key={player.playerIdFull}>
+          <ListItem
+            show={topPerformerListLastOpen ? 1 : 0}
+            key={player.playerIdFull}
+          >
             <ListItemFlexTopRow>
               <LeftSection>
                 <PlayerName to={`/player/${player.playerIdFull}`}>

@@ -19,7 +19,7 @@ import { findTopPerformers } from '../util/stats';
 const ScrollableArea = styled(animated.div)`
   height: 100%;
   margin-top: 55px;
-  display: flex;
+  display: ${props => (props.show === 1 ? 'none' : 'flex')};
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -56,6 +56,9 @@ const Content = ({ client }) => {
     toggleStreamablesList,
     setShowDate,
     favoriteTeam,
+    topPerformerListLastOpen,
+    toggleTopPerformerListLastOpen,
+    showOptionsOverlay,
   } = useContext(AppContext);
 
   const {
@@ -74,12 +77,13 @@ const Content = ({ client }) => {
 
   const hideVideo = () => {
     toggleVideoOverlay(false);
-    togglePerformersList(true);
+    if (topPerformerListLastOpen) {
+      toggleTopPerformerListLastOpen(false);
+    }
   };
 
   const onSelect = (index, youtubevideos = []) => {
     setIndex(index);
-    togglePerformersList(false);
     setSelectedMatchVideos(youtubevideos);
   };
 
@@ -123,7 +127,7 @@ const Content = ({ client }) => {
           );
         }
         return (
-          <ScrollableArea>
+          <ScrollableArea show={showOptionsOverlay ? 1 : 0}>
             <AboveContentButtons
               togglePerformerList={togglePerformerList}
               showTopPerformers={showTopPerformers}

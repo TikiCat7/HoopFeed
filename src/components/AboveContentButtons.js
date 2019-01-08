@@ -41,6 +41,7 @@ const Arrow = styled.span`
   font-size: 20px;
   vertical-align: middle;
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 
 const DateStyle = styled.span`

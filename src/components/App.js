@@ -34,6 +34,9 @@ const App = () => {
   const [showStreamables, toggleStreamablesList] = useState(false);
   const [selectedRange, setRange] = useState(5);
   const [showDate, setShowDate] = useState(true);
+  const [topPerformerListLastOpen, toggleTopPerformerListLastOpen] = useState(
+    false,
+  );
 
   return (
     <BrowserRouter>
@@ -58,6 +61,8 @@ const App = () => {
             toggleOptionsOverlay,
             favoriteTeam,
             setFavoriteTeam,
+            topPerformerListLastOpen,
+            toggleTopPerformerListLastOpen,
           }}
         >
           <VideoContext.Provider
