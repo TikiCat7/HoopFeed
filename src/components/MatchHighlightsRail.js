@@ -9,6 +9,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   overflow-x: hidden;
   justify-content: center;
+  flex: 1;
+  max-height: 120px;
 `;
 
 const Title = styled.h1`
@@ -54,6 +56,7 @@ const VideoRow = styled.div`
 `;
 
 const MatchHighlightsRail = ({ videos }) => {
+  const playerVideos = videos.filter(video => video.player.length === 0);
   const { setVideoId, toggleVideoOverlay } = useContext(VideoContext);
   const handleVideoClick = (event, id) => {
     event.stopPropagation();
@@ -62,7 +65,7 @@ const MatchHighlightsRail = ({ videos }) => {
   };
 
   const renderMatchVideos = () => {
-    return videos.map(video => {
+    return playerVideos.map(video => {
       return (
         <VideoItemWrapper key={video.id}>
           <VideoItem video={video} handleClick={handleVideoClick} />
@@ -71,12 +74,18 @@ const MatchHighlightsRail = ({ videos }) => {
     });
   };
 
-  return (
-    <Wrapper>
-      <Title>Match Highlights</Title>
-      <VideoRow longRow={videos.length > 3}>{renderMatchVideos()}</VideoRow>
-    </Wrapper>
-  );
+  if (playerVideos.length > 0) {
+    return (
+      <Wrapper>
+        <Title>Match Highlights</Title>
+        <VideoRow longRow={playerVideos.length > 3}>
+          {renderMatchVideos()}
+        </VideoRow>
+      </Wrapper>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default MatchHighlightsRail;

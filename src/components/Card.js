@@ -110,14 +110,6 @@ const Card = ({
     });
   };
 
-  const renderMatchVideos = () => {
-    return (
-      <MatchHighlightsRail
-        videos={youtubevideos.filter(video => video.player.length === 0)}
-      />
-    );
-  };
-
   const [cardHeightStyle] = useSpring({
     height: cardOpen ? '600px' : '140px',
     from: { height: '140px' },
@@ -227,9 +219,7 @@ const Card = ({
             homeSelected={homeSelected}
             toggleDivider={handleToggleOnClick}
           />
-          {youtubevideos.length > 0 &&
-            youtubevideos.find(video => video.player.length === 0) &&
-            renderMatchVideos()}
+          <MatchHighlightsRail videos={youtubevideos} />
           {homeSelected && (
             <PlayerStatsSection
               stats={sortMatchStats(matchStats, hTeamId)}
