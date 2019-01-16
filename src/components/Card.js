@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import styled from 'styled-components/macro';
+import ReactGA from 'react-ga';
 
 import CardHeader from './CardHeader';
 import TeamInfo from './TeamInfo';
@@ -29,7 +30,7 @@ const CardContent = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 5px;
-  margin-top: ${props => (props.statusNum === 1 ? '20px' : '0px')};
+  margin-top: 0px;
 `;
 
 const CardCenter = styled.div`
@@ -68,7 +69,14 @@ const Card = ({
   let [homeSelected, toggleDivider] = useState(true);
   const onCardClick = () => {
     if (statusNum === 1) return;
-    if (!cardOpen) toggleDivider(true);
+    if (!cardOpen) {
+      toggleDivider(true);
+      ReactGA.event({
+        category: 'User',
+        action: 'Click match card',
+        label: `${hTeamName} - ${vTeamName}`,
+      });
+    }
     toggleCardOpen(!cardOpen);
     onSelect(index, youtubevideos);
   };

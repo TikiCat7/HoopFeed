@@ -5,6 +5,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
+import ReactGA from 'react-ga';
 
 import AppContext from '../context/AppContext';
 import VideoContext from '../context/VideoContext';
@@ -19,6 +20,11 @@ const client = new ApolloClient({
   }),
   cache: new InMemoryCache(),
 });
+
+ReactGA.initialize(process.env.REACT_APP_GA_ID, {
+  debug: process.env.ENV === 'dev',
+});
+ReactGA.pageview('/toppage');
 
 const App = () => {
   const [favoriteTeam, setFavoriteTeam] = useLocalStorage('favoriteTeam');
