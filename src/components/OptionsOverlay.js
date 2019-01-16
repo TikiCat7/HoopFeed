@@ -118,14 +118,11 @@ const OptionsOverlay = ({
     }
   };
   const handleClose = () => {
-    toggleOptionsOverlay(!showOptionsOverlay);
-  };
-
-  const cleanUp = () => {
     toggleOptions(false);
     toggleAbout(false);
     toggleContact(false);
     toggleSelect(false);
+    toggleOptionsOverlay(!showOptionsOverlay);
   };
 
   const handleSelect = item => {
@@ -140,7 +137,6 @@ const OptionsOverlay = ({
       from={{ opacity: 0 }}
       enter={{ opacity: 1 }}
       leave={{ opacity: 0 }}
-      onDestroyed={() => cleanUp()}
     >
       {showOptionsOverlay =>
         showOptionsOverlay &&
@@ -171,7 +167,9 @@ const OptionsOverlay = ({
                 </React.Fragment>
               )}
               {showContact && (
-                <AboutText>Contact me at watarukay@gmail.com</AboutText>
+                <AboutText>
+                  Contact me at <Link>watarukay@gmail.com</Link>
+                </AboutText>
               )}
               {showOptions && (
                 <OptionSection>
